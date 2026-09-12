@@ -1,0 +1,134 @@
+\documentclass{article} 
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{braket}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{cite}
+\usepackage{hyperref}
+
+\input{commands.tex}
+
+\setlength{\parskip}{\baselineskip}%
+
+\title{Thesis Notes}
+\author{Job Enning}
+
+\begin{document}
+\maketitle
+
+
+\section*{Background}
+This section serves as background information, not directly related to the subject, but nonetheless important for understanding it. I aim to highlight some of the more general ideas and problems that are relevant to the described topics, so that this can be kept in mind during the thesis.
+\subsection{Topology in Condensed Matter}
+
+In quantum mechanics, we describe systems using \textit{quantum numbers}, numbers that characterize the state of a system. Usually, in \textit{few-body} quantum mechanics, we look at symmetries of our system, and the conserved quantities corresponding to them. The generators of these symmetries are related to operators by canonical quantization, and we describe the state as a sum of eigenstates of the symmetry generators. To exemplify this, look at the the hydrogen atom. In this case, the system has three separate symmetry generators, related to rotations around three perpendicular axes. Each of these correspond to a specific quantum number used to describe the state.
+
+However, in \textit{many-body} quantum mechanics, we often do not have the luxury of symmetries. Of course, when treating a crystal as a perfectly periodic background of ions, we have a discrete translational symmetry, giving rise to Bloch bands, which gives us a quantum number. However, when we introduce defects into this lattice, we can no longer rely on this description either. It's an unfortunate truth that nature is messy. Once we attempt to scale up our models to contain a macroscopic amount of particles, the symmetries that we relied on for our quantum mechanical description tend to break. This is one of the reasons why many-body quantum physics is so difficult. 
+
+Topological quantum numbers don't suffer from this problem. They are quantum numbers quantized on purely \textit{topological} grounds (as opposed to \textit{geometrical} grounds). This sounds vague at best, but should be clearer after some examples.
+
+The simplest form of a topological quantum number is the winding number. We obviously require single-valuedness for the order parameter, and for systems in which the order parameter is complex-valued, this means that along a closed contour the phase angle may only change by an integer value of $2\pi$. This integer is the winding number, and may, by Stokes' theorem, be related to physically measurable quantities, which are referred to as a defect, because they require our order parameter to vanish. An example of a system with complex order parameter is a superfluid, in which the corresponding quantized quantity is circulation within the fluid. Another example is a superconductor, within which the magnetic flux is quantized. We say such quantities are \textit{topologically protected}, in the sense that we can't change the quantity by continuously changing the order parameter, as the winding number has to remain an integer. 
+
+A slightly more complex example is the Quantum Hall Effect (QHE), in which the conductance is quantized. The topology of this system is more complicated, but again we can define a topological invariant, the Chern number, which corresponds to the amount of conductance quanta.
+
+\begin{tcolorbox}[title = Sources, colback = blue!5, colframe = blue]
+    \href{file:/Users/jobenning/Library/Mobile\ Documents/com\~apple\~CloudDocs/Desktop/Books\ \&\ Papers/Papers/Thouless\ -\ Introduction\ to\ Topological\ Quantum\ Numbers.pdf}{Thouless - Introduction to Topological Quantum Numbers}
+\end{tcolorbox}
+
+\subsection{Kitaev Chain}
+The Kitaev chain Hamiltonian is given by
+\begin{equation}
+    \hat{H} = -t\sum_{j=1}^{N-1}(\hat{a}^\dagger_{j+1}\hat{a}_j+\hat{a}_j^\dagger \hat{a}_{j+1}) - \mu \sum_{j=1}^N\hat{a}^\dagger_j \hat{a}_j + \sum_{j=1}^{N-1}(\Delta^* \hat{a}_{j+1}\hat{a}_j + \Delta a_j^\dagger a_{j+1}^\dagger).
+\end{equation}
+
+It's important to understand that the pairing field $\Delta$ is not a self-consistently determined parameter, but rather taken to be a free parameter of the theory. This means that the model assumes that the chain is coupled to a superconductor, which serves as an electron reservoir, which allows the anomolous terms to exist. The anomolous term couples the holes and electrons, and is what causes the superconductivity. Due to a gauge symmetry in the definition of the fields we may take $\Delta$ real. 
+
+This model can't support a steady current, so we would like to make the connection to the reservoir explicit, so that we can, by tuning the chemical potential of the different connection points, make current flow. 
+
+\textbf{Questions}
+\begin{enumerate}
+    \item When do we use the basic model, and when do we use the model that attaches to the leads?
+\end{enumerate}
+
+ \begin{tcolorbox}[title = Sources, colback = blue!5, colframe = blue]
+    \begin{enumerate} 
+        \itemsep0em
+        \item Doornenbal - Conductance of a Finite Kitaev Chain
+        \item Kitaev - Unpaired Majorana fermions in quantum wires
+        \item Leijnse - Introduction to topological superconductivity and Majorana fermions
+    \end{enumerate}
+    \end{tcolorbox}
+
+\subsection{Keldysh Formalism}
+\begin{tcolorbox}[title = Sources, colback = blue!5, colframe = blue]
+    \begin{enumerate} 
+        \itemsep0em
+        \item Kamenev - Non-equilibrium Field Theory
+        \item Stoof - Coherent Versus Incoherent Dynamics During Bose-Einstein Condensation in Atomic Gases
+    \end{enumerate}
+\end{tcolorbox}
+
+\subsection{Thesis Laura notes}
+
+The thesis takes a Green's function approach to the problem. The general method is to start off with a Hamiltonian, derive the EoM, using the Heisenberg equation, and then solve it by first finding a homogeneous solution, then using the Green's function method to find the total solution. 
+
+Three different Hamiltonians are discussed. Firstly, the simplest case is the single site model, with Hamiltonian
+\begin{equation}
+    \hat{H} = \sum_{k}\xi_k \hat{c}^{\dagger}_k\hat{c}_k + \xi_i \hat{d}^\dagger\hat{d} + T\sum_k\left(\hat{c}^{\dagger}_k\hat{d} + \hat{d}^{\dagger}\hat{c}_k\right).
+\end{equation}
+
+This treats the "superconductor" as just a single site, which is the one coupled to the STM tip. I'm not really sure how to interpret this. There's actually no superconductivity in this model, there are no Cooper pairing terms in the Hamiltonian. I believe this model is mostly showcased to introduce the formalism, rather than making any physically relevant conclusions. 
+
+This Hamiltonian is used to get the Heisenberg equations of motion of the creation and annihilation operators of both the tip and the superconducting site.
+
+The expression for the current is derived using the Heisenberg EoM, and is expressed in terms of the time derivatives of the creation and annihilation operators of both the site and the STM tip. The dynamics of these is in turn also found using the Heisenberg EoM, from which it can be shown that the current is given by
+
+\begin{equation}
+    \langle I \rangle = -T\frac{ie}{\hbar}\sum_k\left(\langle\hat{d}^\dagger\hat{c}_k\rangle - \langle \hat{c}^\dagger_k \hat{d}\rangle\right).
+\end{equation}
+
+This consists of two terms, one in which a particle is annihilated in the STM tip, and created on the site, and one which is the opposite. The two contribute with opposing sign, as they are counteracting effects. 
+
+To  find the expectation value of the current, we solve for the dynamics of the creation and annihilation operators using the Heisenberg EoM. These are solved using a Green's function method, giving rise to a giant mess of a solution that can be simplified down to a much simpler form by relating the Green's functions to the occupation. For this particular model we find
+\begin{equation}
+    \frac{2\pi e}{\hbar}|T^2|\int_{-\infty}^{\infty}dE \, \rho_S(E) \rho_N(E)[N_k(E)-N_i(E)].
+\end{equation}
+We approximate the tip density is slowly changing around the Fermi energy, and $eV<<E_F$, we can approximate the density in the tip to be constant. At zero temperature the Fermi Dirac distribution reduces to a step function, simplifying the integral. The resulting current graph, which may be found numerically, shows that there is no current running so long as $|eV/2| < \Delta$, which is of course because there aren't any available states at that energy in the superconductor. 
+
+This model doesn't actually contain a superconductor, it only uses the DoS of a gapped superconductor, and then applies that to a simpler system. This is why we don't see things like Andreev reflection. For this we have to directly model the superconductivity.
+
+The thesis then shows that the differential tunneling conductance $dI/dV$ is proportional to the density of states. 
+
+\textbf{Questions}
+\begin{enumerate}
+    \item What does the simplified model even mean? Modeling the superconductor with a single state? Is there any physical relevance, or is it only for showcasing the formalism?
+    \item What is meant with a one-lead model?
+    \item The wide-band approximation?
+    \item This whole thesis is in equilibrium, but Keldysh formalism is used for non-equilibrium situations. Do we actually use Keldysh because we want to work out of equilibrium, or will we still just look at a steady state solution?
+    \item How does the field theory approach make this derivation easier?
+    \item What makes implementing the actual Kitaev chain hard (e.g. numerics)?
+
+\end{enumerate}
+\begin{tcolorbox}[title = Sources, colback = blue!5, colframe = blue]
+    Bachelor's Thesis Laura Voordouw
+\end{tcolorbox}
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{sample}
+
+\end{document}
