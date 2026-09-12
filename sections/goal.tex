@@ -1,0 +1,20 @@
+\section{Research goal}
+The work that Laura has done so far focusses on the IV characterics of the system. Within the operator formalism she has derived the relation for the current, to second order. This relation depends on the density of states and the occupation number of both the tip and the superconductor. This relation is quite universal, although it doesn't yet include Andreev reflection, which you can only find if you include particle-hole pairing terms in your Hamiltonian. This is what Santi is going to focus on. I will focus on finding an expression for the \textit{shot noise} of the current. This can be done in a similar way to what Laura has done so far, entirely within operator formalism. This will give a general expression for the noise, which should give something very similar to what was found for the current. 
+
+The reason we're interested in this is because the experiment actually measures the ratio between the shot noise and the current, referred to as the \textit{Fano factor}. This factor should be 1 when the voltage is larger than the gap, and 2 if it's smaller (in an s-wave superconductor). If the voltage is smaller than the superconducting gap the current can only flow through Andreev reflection, which I will initially ignore. Hence the main goal is to find an expression for the shot noise that is (at zero temperature) equal to the current.
+
+So the first goal is to find this expression within the operator formalism. To get there, I'll first replicate Laura's calculations, and then apply something similar to the noise. For this I should also find how the noise is properly defined, which I should be able to find in the paper by Ingmar Swart. 
+
+In the meantime I will also try to study the Keldysh/noise formalism from Doornenbal's paper, which should give us a self-consistent solution to the problem, in that we immediately find the proper out-of-equilibrium occupation numbers of the superconductor, as technically we aren't allowed to assume that it's just a Fermi-Dirac distribution. It's unclear whether the basic system that Laura uses won't just equilibrate and give rise to a zero current in Keldysh formalism, so this might have to be done with a more complex Hamiltonian which includes the reservoir, i.e. the two lead model in Doornenbal's paper. However, before I can actually apply this, I should understand how it works, which may take a while. Therefore I'll first try to do it within operator formalism.
+
+\begin{tcolorbox}[title = Roadmap, colback = red!7!white, colbacktitle = red!95!black]
+    \begin{enumerate}
+        \item Redo Laura's calculations, understand the different Green's functions, how they relate to densities and occupation numbers, and find the expression for the current. Read the citations in her BEP.
+        \item Read the papers by Ingmar Swart to find what the shot noise is.
+        \item Express the shot noise in terms of operators.
+        \item Find the temporal evolution using the Heisenberg EoM.
+        \item Express in terms of Green's functions.
+        \item Express in terms of DoS and occupation number.
+    \end{enumerate}
+\end{tcolorbox}
+

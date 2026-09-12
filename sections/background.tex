@@ -1,4 +1,4 @@
-\section*{Background}
+\section{Background}
 This section serves as background information, not directly related to the subject, but nonetheless important for understanding it. I aim to highlight some of the more general ideas and problems that are relevant to the described topics, so that this can be kept in mind during the thesis.
 \subsection{Topology in Condensed Matter}
 
@@ -50,48 +50,3 @@ This model can't support a steady current, so we would like to make the connecti
     \end{enumerate}
 \end{tcolorbox}
 
-\subsection{Thesis Laura notes}
-
-The thesis takes a Green's function approach to the problem. The general method is to start off with a Hamiltonian, derive the EoM, using the Heisenberg equation, and then solve it by first finding a homogeneous solution, then using the Green's function method to find the total solution. 
-
-Three different Hamiltonians are discussed. Firstly, the simplest case is the single site model, with Hamiltonian
-\begin{equation}
-    \hat{H} = \sum_{k}\xi_k \hat{c}^{\dagger}_k\hat{c}_k + \xi_i \hat{d}^\dagger\hat{d} + T\sum_k\left(\hat{c}^{\dagger}_k\hat{d} + \hat{d}^{\dagger}\hat{c}_k\right).
-\end{equation}
-
-This treats the "superconductor" as just a single site, which is the one coupled to the STM tip. I'm not really sure how to interpret this. There's actually no superconductivity in this model, there are no Cooper pairing terms in the Hamiltonian. I believe this model is mostly showcased to introduce the formalism, rather than making any physically relevant conclusions. 
-
-This Hamiltonian is used to get the Heisenberg equations of motion of the creation and annihilation operators of both the tip and the superconducting site.
-
-The expression for the current is derived using the Heisenberg EoM, and is expressed in terms of the time derivatives of the creation and annihilation operators of both the site and the STM tip. The dynamics of these is in turn also found using the Heisenberg EoM, from which it can be shown that the current is given by
-
-\begin{equation}
-    \langle I \rangle = -T\frac{ie}{\hbar}\sum_k\left(\langle\hat{d}^\dagger\hat{c}_k\rangle - \langle \hat{c}^\dagger_k \hat{d}\rangle\right).
-\end{equation}
-
-This consists of two terms, one in which a particle is annihilated in the STM tip, and created on the site, and one which is the opposite. The two contribute with opposing sign, as they are counteracting effects. 
-
-To  find the expectation value of the current, we solve for the dynamics of the creation and annihilation operators using the Heisenberg EoM. These are solved using a Green's function method, giving rise to a giant mess of a solution that can be simplified down to a much simpler form by relating the Green's functions to the occupation. For this particular model we find
-\begin{equation}
-    \frac{2\pi e}{\hbar}|T^2|\int_{-\infty}^{\infty}dE \, \rho_S(E) \rho_N(E)[N_k(E)-N_i(E)].
-\end{equation}
-We approximate the tip density is slowly changing around the Fermi energy, and $eV<<E_F$, we can approximate the density in the tip to be constant. At zero temperature the Fermi Dirac distribution reduces to a step function, simplifying the integral. The resulting current graph, which may be found numerically, shows that there is no current running so long as $|eV/2| < \Delta$, which is of course because there aren't any available states at that energy in the superconductor. 
-
-This model doesn't actually contain a superconductor, it only uses the DoS of a gapped superconductor, and then applies that to a simpler system. This is why we don't see things like Andreev reflection. For this we have to directly model the superconductivity.
-
-The thesis then shows that the differential tunneling conductance $dI/dV$ is proportional to the density of states. 
-
-\begin{tcolorbox}[title = Questions, colback = gray!5, colframe = black]
-    \begin{enumerate}
-        \item What does the simplified model even mean? Modeling the superconductor with a single state? Is there any physical relevance, or is it only for showcasing the formalism? \textcolor{blue}{The equation that we find for the current is quite universal (although it doesn't capture the Andreev reflection). The single site model is just the simplest model within which we can derive this relation.}
-        \item What is meant with a one-lead model?
-        \item The wide-band approximation?
-        \item This whole thesis is in equilibrium, but Keldysh formalism is used for non-equilibrium situations. Do we actually use Keldysh because we want to work out of equilibrium, or will we still just look at a steady state solution? \textcolor{blue}{The system is pulled out of equilibrium by the presence of the tip. In principle, if we do Keldysh on the system when it isn't connected to any leads, we'd expect the current to be zero, as the system finds a new equilibrium in which the chemical potentials become the same.}
-        \item How does the field theory approach make this derivation easier? \textcolor{blue}{You can find the self-energy in terms of diagrams as well. The beauty of the manual approach is that it is exact (up to a certain order in the tunneling amplitude)}
-        \item What makes implementing the actual Kitaev chain hard (e.g. numerics)? \textcolor{blue}{In principle this isn't that difficult, it comes down to inverting a matrix. It's not necessarily numerically complex.}
-    \end{enumerate}
-\end{tcolorbox}
-
-\begin{tcolorbox}[title = Sources, colback = gray!5, colframe = gray]
-    Bachelor's Thesis Laura Voordouw
-\end{tcolorbox}
