@@ -1,0 +1,40 @@
+\section{Week 1 - 14/9}
+\subsection{Derivation of current expression}
+To find an expression for the current we start off with the simplest model, which is given by
+\begin{equation}
+    \hat{H} = \sum_{k}\xi_k \hat{c}^{\dagger}_k\hat{c}_k + \xi_i \hat{d}^\dagger\hat{d} + T\sum_k\left(\hat{c}^{\dagger}_k\hat{d} + \hat{d}^{\dagger}\hat{c}_k\right).
+\end{equation}
+This model includes the essential dynamics of the tip-superconductor interaction, even though there's no actual superconductivity in this model. Using the Heisenberg EoM we can find that (evaluating the commutators)
+\begin{equation}
+    \langle \hat{I} \rangle = -T\frac{ie}{\hbar}\sum_k\left(\langle\hat{d}^\dagger\hat{c}_k\rangle - \langle \hat{c}^\dagger_k \hat{d}\rangle\right).
+\end{equation}
+We then derive the EoM's for each of the operators, and solve for their dynamics. We find the following equations
+\begin{eqnarray}
+    \left(i \hbar \frac{\partial}{\partial t} - \xi_k\right) \hat{c}_k  = T\hat{d}\\
+    \left(i \hbar \frac{\partial}{\partial t} - \xi_i\right) \hat{d}  = \sum_k T \hat{c}_k
+\end{eqnarray}
+Which have as solutions
+\begin{eqnarray}
+    \hat{c}_k(t) = \hat{c}_{k,H}(t) + \int_{-\infty}^{\infty}dt'\,TG_k^{(+)}(t-t')\hat{d}(t'), \\
+    \hat{d}(t) = \hat{d}_{H}(t) + \int_{-\infty}^{\infty}dt'\,TG_i^{(+)}(t-t')\hat{c}_k(t'),
+\end{eqnarray}
+where $\hat{c}_{k,H}(t)$ and $\hat{d}_H(t)$ are solutions to the homogeneous equations, and the retarded Green's function $G_k^{(+)}(t-t')$ is given by
+\begin{equation}
+    G_k^{(+)}(t-t') = \int_{-\infty}^{\infty}\frac{dE}{2\pi \hbar}\frac{1}{E-\xi_k+i\epsilon}e^{\frac{-i (t-t')}{\hbar}}.
+\end{equation}
+I should look into why this is actually equivalent to the retarded Green's function, as it is defined as
+\begin{equation}
+    G_k^{(+)}(t-t') = -i \theta(t-t')\langle \{\hat{c}_k(t), \hat{c}_k^\dagger(t')\} \rangle.
+\end{equation}
+
+Filling in these solutions we get the following expression for the current
+\begin{equation}
+    \langle \hat{I} \rangle = -|T|^2\frac{ie}{\hbar}\sum_{k}\int_{-\infty}^{\infty}\left[TG_k^{(+)}(t-t')\langle\hat{d}_H^\dagger(t)\hat{d}_H(t')\rangle+\right]
+\end{equation}
+\begin{tcolorbox}[title = Sources, colback = gray!5, colframe=gray]
+    \begin{enumerate}
+        \item Bachelor's Thesis Laura Voordouw
+        \item Haug - Quantum Kinetics in Transport and Optics of Semiconductors
+        \item Bruus - Many-body quantum theory in condensed matter physics
+    \end{enumerate}
+\end{tcolorbox}
