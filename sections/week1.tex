@@ -4,12 +4,12 @@ We derive the current using a simple Hamiltonian, given by
 \begin{equation}
     \hat{H} = \sum_{k}\xi_k \hat{c}^{\dagger}_k\hat{c}_k + \xi_S \hat{d}^\dagger\hat{d} + T\sum_k\left(\hat{c}^{\dagger}_k\hat{d} + \hat{d}^{\dagger}\hat{c}_k\right).
 \end{equation}
-Here $\xi_k$ is the dispersion of the electrons in the tip, annihilated by $\hat{c}_k$, $\xi_S$ is the dispersion the electrons on a single site, annihilated by $\hat{d}$, and $T$ is the hopping amplitude. The sample (subscript S) is thus modeled using a single site. Using the Heisenberg equation of motion (EOM) we find that
+Here $\xi_k$ is the dispersion of the electrons in the tip, annihilated by $\hat{c}_k$, $\xi_S$ is the dispersion the electrons on a single site, annihilated by $\hat{d}$, and $T$ is the hopping amplitude, which we may take real by gauge symmetry. The sample (subscript $_S$) is thus modeled using a single site. Using the Heisenberg equation of motion (EOM) we find that
 \begin{align}
     \langle \hat{I} \rangle = -e\frac{d\langle\hat{N}\rangle}{dt} &= -T\frac{ie}{\hbar}\sum_k\left(\langle\hat{d}^\dagger\hat{c}_k\rangle - \langle \hat{c}^\dagger_k \hat{d}\rangle\right), \\
-    &= -T \frac{2ie}{\hbar}\sum_k\Im \{\langle \hat{d}^\dagger\hat{c_k} \rangle \},
+    &= -T \frac{2ie}{\hbar}\sum_k\mathfrak{Im} \{\langle \hat{d}^\dagger\hat{c_k} \rangle \},
 \end{align}
-where $\Im$ denotes the imaginary part, and $e = 1.602\cdot10^{-19}$ the charge quantum. Applying the Heisenberg EOM to the individual annihilation operators we readily find
+where $\mathfrak{Im}$ denotes the imaginary part, and $e = 1.602\cdot10^{-19}$ the charge quantum. Applying the Heisenberg EOM to the individual annihilation operators we readily find
 \begin{eqnarray}
     \left(i \hbar \frac{\partial}{\partial t} - \xi_k\right) \hat{c}_k=&T\hat{d},\\
     \left(i \hbar \frac{\partial}{\partial t} - \xi_i\right) \hat{d}=&\sum_k T \hat{c}_k,
@@ -56,7 +56,7 @@ and thus
 \end{equation}
 To proceed we must introduce the spectral weight $A(E)$, which is defined as
 \begin{equation}
-    A(E) \equiv i\hbar\left[G^{(+)}(E)-G^{(-)}(E)\right] = 2i\hbar \Im \{G^{(+)}(E)\} = -2i\hbar\Im\{G^{(-)}(E)\},
+    A(E) \equiv i\hbar\left[G^{(+)}(E)-G^{(-)}(E)\right] = 2i\hbar \mathfrak{Im} \{G^{(+)}(E)\} = -2i\hbar\mathfrak{Im}\{G^{(-)}(E)\},
 \end{equation}
 which is decidedly real. By formally introducing a sum over all eigenstates within the expectation values, the following important result may be derived:
 \begin{equation}
@@ -68,9 +68,9 @@ where $N(E)$ is the distribution function. This result is referred to as the \te
 \end{equation}
 where the subscript $_N$ refers to "normal metal". We thus find that for the expectation value of the current 
 \begin{align}
-    \langle\hat{I}\rangle &= -T \frac{2ie}{\hbar}\sum_k\Im \{\langle \hat{d}^\dagger\hat{c_k} \rangle \}, \nonumber\\
-    &= -|T|^2\frac{2ie}{\hbar} \sum_k \int \frac{dE}{2\pi\hbar}\left[N_N(E)A_k(E) \Im\{G_S^{(-)}(E)\} + N_S(E)A_S(E)\Im \{G_k^{(+)}(E)\}\right],\nonumber \\
-    &= \frac{e|T|^2}{\hbar^2}\sum_k \int \frac{dE}{2\pi\hbar} A_k(E)A_S(E)\left[N_N(E)-N_S(E)\right].
+    \langle\hat{I}\rangle &= -T \frac{2ie}{\hbar}\sum_k\mathfrak{Im} \{\langle \hat{d}^\dagger\hat{c_k} \rangle \}, \nonumber\\
+    &= -|T|^2\frac{2ie}{\hbar} \sum_k \int \frac{dE}{2\pi\hbar}\left[N_N(E)A_k(E) \mathfrak{Im}\{G_S^{(-)}(E)\} + N_S(E)A_S(E)\mathfrak{Im} \{G_k^{(+)}(E)\}\right] + O(T^3),\nonumber \\
+    &= \frac{e|T|^2}{\hbar^2}\sum_k \int \frac{dE}{2\pi\hbar} A_S(E)A_k(E)\left[N_N(E)-N_S(E)\right] + O(T^3).
 \end{align}
 Now for the free case we may explicitly fill in the expression for the Green's function, giving
 \begin{equation}
@@ -78,12 +78,72 @@ Now for the free case we may explicitly fill in the expression for the Green's f
 \end{equation}
 which follows from the Sokhotski-Plemelj theorem. If we treat both the sample and the tip as a free electron gas, we find
 \begin{equation}
-    \langle\hat{I}\rangle =  \frac{2\pi e}{\hbar}|T|^2 \sum_k \int dE \, \delta(E-\xi_k)\delta(E-\xi_S)\left[N_N(E)-N_S(E)\right],
+    \langle\hat{I}\rangle =  \frac{2\pi e}{\hbar}|T|^2 \sum_k \int dE \, \delta(E-\xi_S)\delta(E-\xi_k)\left[N_N(E)-N_S(E)\right] + O(T^3),
 \end{equation}
 and using that in our simplified model we have the density of states of the different metals given by $\rho_S(E) = \delta(E-\xi_S)$ and $\rho_N(E) = \sum_k\delta(E-\xi_k)$, we find the final expression
 \begin{equation}
-    \langle\hat{I}\rangle = \frac{2\pi e}{\hbar}|T|^2 \int dE\, \rho_S(E)\rho_N(E)\left[N_N(E)-N_S(E)\right].
+    \langle\hat{I}\rangle = \frac{2\pi e}{\hbar}|T|^2 \int dE\, \rho_S(E)\rho_N(E)\left[N_N(E)-N_S(E)\right] + O(T^3).
 \end{equation}
+Note that $N_N(E)-N_S(E) = N_N(E)(1-N_S(E)) - N_S(E)(1-N_N(E))$, showing the forward and backward current separately.
+
+
+
+
+
+
+
+\subsection{Noise derivation}
+The noise in the current is defined as
+\begin{align}
+    S(t-t') &= \langle (\hat{I}(t) - \langle \hat{I}(t)\rangle)(\hat{I}(t') - \langle \hat{I}(t')\rangle) \rangle,  \nonumber\\
+    &= \langle \hat{I}(t)\hat{I}(t') \rangle - \langle \hat{I}(t)\rangle \langle \hat{I}(t') \rangle.
+\end{align}
+Given the expression for the current in terms of creation and annihilation operators we find that
+\begin{align}
+    \langle\hat{I}(t)\hat{I}(t')\rangle = -\frac{e^2 |T|^2}{\hbar^2}\sum_{k,q} \left[
+    \langle\hat{d}^\dagger(t)\hat{c}_k(t)\hat{d}^\dagger(t')\hat{c}_q(t')\rangle - 
+    \langle\hat{d}^\dagger(t)\hat{c}_k(t)\hat{c}_q^\dagger(t')\hat{d}(t')\rangle \right.\\
+    \left.- \langle\hat{c}_k^\dagger(t)\hat{d}(t)\hat{d}^\dagger(t')\hat{c}_q(t')\rangle +
+    \langle\hat{c}_k^\dagger(t)\hat{d}(t)\hat{c}_q^\dagger(t')\hat{d}(t')\rangle \right].
+\end{align}
+Because the prefactor is $|T|^2$, we only need to retain zeroth order terms in the expansion. Working out the non-zero Wick contractions we find that only the second and third term contribute at this order, i.e.
+\begin{equation}
+    \langle\hat{I}(t)\hat{I}(t')\rangle = -\frac{e^2 |T|^2}{\hbar^2}\sum_k\left[
+        -\langle\hat{c}_{k,0}(t)\hat{c}^\dagger_{k,0}(t')\rangle
+        \langle\hat{d}^\dagger_0(t)\hat{d}_0(t')\rangle
+        -\langle \hat{c}_{k,0}^\dagger(t)\hat{c}_{k,0}(t') \rangle \langle \hat{d}_0(t)\hat{d}_0^\dagger(t') \rangle
+    \right] + O(T^3)
+\end{equation}
+The term $\langle \hat{I}(t)\rangle \langle \hat{I}(t') \rangle$ is zero at this order, because it only contains crossterm expectation values, e.g. $\langle \hat{d}^\dagger(t)\hat{c}_k(t)\rangle = O(T)$. Thus the above expression corresponds to the noise $S(t-t')$ at this order. To proceed we introduce the counterpart to the lesser Green's function, the \textit{greater} Green's function:
+\begin{align}
+    G_k^>(t-t') = -\frac{i}{\hbar}\langle \hat{c}_k(t)\hat{c}_k^\dagger(t') \rangle, \\
+    G_S^>(t-t') = -\frac{i}{\hbar}\langle \hat{d}(t)\hat{d}^\dagger(t') \rangle.
+\end{align}
+Similarly to the lesser Green's function, $G^>(E)$ is also related to the spectral weight trough the fluctuation-dissipation theorem, according to the equation
+\begin{equation}
+    G^>(E) = -\frac{i}{\hbar}[1-N(E)]A(E).
+\end{equation}
+We find for the noise
+\begin{align}
+    S(t-t') &= e^2|T|^2 \sum_k \left[G^>_k(t-t')G^<_S(t'-t) + G^<_k(t'-t)G^>_S(t-t')\right],\\
+    &= e^2|T|^2 \sum_k \left[G^>_k(f)G^<_S(-f) + G^<_k(-f)G^>_S(f)\right].
+\end{align}
+The noise that we're interested in is the shot noise, which is frequency independent, hence we look at the time averaged noise, the $\omega = 0$ component. Integrating the expression over time
+\begin{equation}
+    S(\omega = 0) = e^2|T|^2 \sum_k \int df \,\left[G^>_k(f)G^<_S(-f) + G^<_k(-f)G^>_S(f)\right],
+\end{equation}
+we once again recover the form of a convolution. Fourier transforming yields
+\begin{align}
+    S(\omega = 0) &= e^2|T|^2 \sum_k \int \frac{dE}{2\pi\hbar} \left[G^>_k(E)G^<_S(E) + G^<_k(E)G^>_S(E)\right],\\
+    &= \frac{e^2|T|^2}{\hbar^2} \sum_k \int \frac{dE}{2\pi\hbar} A_S(E)A_k(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right], \\
+    &= \frac{2\pi e^2|T|^2}{\hbar}\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right].
+\end{align}
+The noise consists of two components, thermal noise, and shot noise. Thermal noise occurs due to the random thermal motion of charge carriers, whereas shot noise is the noise purely due to the tunneling barrier, which is what we're interested in. We can rewrite 
+\begin{align}
+    S(\omega=0)&=\frac{2\pi e^2|T|^2}{\hbar}\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_k(E)\bigr)N_S(E)+N_k(E)\bigl(1-N_S(E)\bigr) \right],\nonumber\\
+    &=\frac{2\pi e^2|T|^2}{\hbar}\int dE\,\rho_S(E)\rho_N(E)\left[\underbrace{N_S(E)\bigl(1-N_S(E)\bigr) + N_N(E)\bigl(1-N_N(E)\bigr)}_{\text{Thermal noise }S_{\textrm{thermal}}} \nonumber\right. \\
+    &\left. + \underbrace{\bigl(N_S(E) - N_N(E)\bigr)^2}_{\text{Shot noise } S_{\textrm{shot}}}\right].
+\end{align}
 
 
 
@@ -100,3 +160,5 @@ and using that in our simplified model we have the density of states of the diff
         \item Bruus - Many-body quantum theory in condensed matter physics
     \end{enumerate}
 \end{tcolorbox}
+
+
