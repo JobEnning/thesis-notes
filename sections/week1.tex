@@ -1,36 +1,98 @@
 \section{Week 1 - 14/9}
 \subsection{Derivation of current expression}
-To find an expression for the current we start off with the simplest model, which is given by
+We derive the current using a simple Hamiltonian, given by
 \begin{equation}
-    \hat{H} = \sum_{k}\xi_k \hat{c}^{\dagger}_k\hat{c}_k + \xi_i \hat{d}^\dagger\hat{d} + T\sum_k\left(\hat{c}^{\dagger}_k\hat{d} + \hat{d}^{\dagger}\hat{c}_k\right).
+    \hat{H} = \sum_{k}\xi_k \hat{c}^{\dagger}_k\hat{c}_k + \xi_S \hat{d}^\dagger\hat{d} + T\sum_k\left(\hat{c}^{\dagger}_k\hat{d} + \hat{d}^{\dagger}\hat{c}_k\right).
 \end{equation}
-This model includes the essential dynamics of the tip-superconductor interaction, even though there's no actual superconductivity in this model. Using the Heisenberg EoM we can find that (evaluating the commutators)
-\begin{equation}
-    \langle \hat{I} \rangle = -T\frac{ie}{\hbar}\sum_k\left(\langle\hat{d}^\dagger\hat{c}_k\rangle - \langle \hat{c}^\dagger_k \hat{d}\rangle\right).
-\end{equation}
-We then derive the EoM's for each of the operators, and solve for their dynamics. We find the following equations
+Here $\xi_k$ is the dispersion of the electrons in the tip, annihilated by $\hat{c}_k$, $\xi_S$ is the dispersion the electrons on a single site, annihilated by $\hat{d}$, and $T$ is the hopping amplitude. The sample (subscript S) is thus modeled using a single site. Using the Heisenberg equation of motion (EOM) we find that
+\begin{align}
+    \langle \hat{I} \rangle = -e\frac{d\langle\hat{N}\rangle}{dt} &= -T\frac{ie}{\hbar}\sum_k\left(\langle\hat{d}^\dagger\hat{c}_k\rangle - \langle \hat{c}^\dagger_k \hat{d}\rangle\right), \\
+    &= -T \frac{2ie}{\hbar}\sum_k\Im \{\langle \hat{d}^\dagger\hat{c_k} \rangle \},
+\end{align}
+where $\Im$ denotes the imaginary part, and $e = 1.602\cdot10^{-19}$ the charge quantum. Applying the Heisenberg EOM to the individual annihilation operators we readily find
 \begin{eqnarray}
-    \left(i \hbar \frac{\partial}{\partial t} - \xi_k\right) \hat{c}_k  = T\hat{d}\\
-    \left(i \hbar \frac{\partial}{\partial t} - \xi_i\right) \hat{d}  = \sum_k T \hat{c}_k
+    \left(i \hbar \frac{\partial}{\partial t} - \xi_k\right) \hat{c}_k=&T\hat{d},\\
+    \left(i \hbar \frac{\partial}{\partial t} - \xi_i\right) \hat{d}=&\sum_k T \hat{c}_k,
 \end{eqnarray}
-Which have as solutions
+which have as solutions
 \begin{eqnarray}
-    \hat{c}_k(t) = \hat{c}_{k,H}(t) + \int_{-\infty}^{\infty}dt'\,TG_k^{(+)}(t-t')\hat{d}(t'), \\
-    \hat{d}(t) = \hat{d}_{H}(t) + \int_{-\infty}^{\infty}dt'\,TG_i^{(+)}(t-t')\hat{c}_k(t'),
+    \hat{c}_k(t) = \hat{c}_{k,0}(t) + \int_{-\infty}^{\infty}dt'\,TG_k^{(+)}(t-t')\hat{d}(t'), \\
+    \hat{d}(t) = \hat{d}_{0}(t) + \int_{-\infty}^{\infty}dt'\,TG_S^{(+)}(t-t')\hat{c}_k(t'),
 \end{eqnarray}
-where $\hat{c}_{k,H}(t)$ and $\hat{d}_H(t)$ are solutions to the homogeneous equations, and the retarded Green's function $G_k^{(+)}(t-t')$ is given by
+where $\hat{c}_{k,0}(t)$ and $\hat{d}_0(t)$ are solutions to the homogeneous equations, and the retarded Green's function $G_k^{(+)}(t-t')$ is given by
 \begin{equation}
-    G_k^{(+)}(t-t') = \int_{-\infty}^{\infty}\frac{dE}{2\pi \hbar}\frac{1}{E-\xi_k+i\epsilon}e^{\frac{-i (t-t')}{\hbar}}.
+    G_k^{(+)}(t-t') \equiv  -\frac{i}{\hbar} \theta(t-t')\langle \{\hat{c}_k(t), \hat{c}_k^\dagger(t')\} \rangle = \int_{-\infty}^{\infty}\frac{dE}{2\pi\hbar}\frac{1}{E-\xi_k+i\epsilon}e^{\frac{-iE (t-t')}{\hbar}}.
 \end{equation}
-I should look into why this is actually equivalent to the retarded Green's function, as it is defined as
+It's conjugate is the advanced Green's function $G_k^{(+)}(t-t')$, note the change of sign in the argument
 \begin{equation}
-    G_k^{(+)}(t-t') = -i \theta(t-t')\langle \{\hat{c}_k(t), \hat{c}_k^\dagger(t')\} \rangle.
+    G_k^{(+)}(t-t') = \left(G_k^{(-)}(t'-t)\right)^*.
+\end{equation}
+In principle the coupling between the tip and the sample induces a self-energy, but for the tip this effect is negligible, so we use the free Green's function. For the sample Green's function $G_S^{(+)}(t-t')$ we maintain generality. We find
+\begin{equation}
+    \langle\hat{d}^\dagger\hat{c}_k\rangle = T\int dt \, \left[G_S^{(-)}(t'-t)\langle \hat{c}_{k,0}^\dagger(t') \hat{c}_{k,0}(t)\rangle 
+    +G_k^{(+)}(t-t')\langle\hat{d}_0^\dagger(t)\hat{d}_0(t')\rangle\right] + O(T^2).
+\end{equation}
+The expectation values of the homogeneous operators can be expressed in terms of \textit{lesser} Green's functions $G_{k/S}^{<}(t-t')$,
+\begin{eqnarray}
+    &G_k^<(t-t') \equiv \frac{i}{\hbar}\langle\hat{c}_{k,0}^\dagger(t')\hat{c}_{k,0}(t)\rangle, \\
+    &G_S^<(t'-t) \equiv \frac{i}{\hbar}\langle\hat{d}_{0}^\dagger(t)\hat{d}_{0}(t')\rangle.
+\end{eqnarray}
+So that
+\begin{align}
+     \langle\hat{d}^\dagger\hat{c}_k\rangle &= -i\hbar T\int dt \, \left[G_S^{(-)}(t'-t)G_k^<(t-t')
+    +G_k^{(+)}(t-t')G_S^<(t'-t)\right] + O(T^2), \nonumber\\
+    &= -i\hbar T \int df\, \left[G_S^{(-)}(-f)G_k^<(f) + G_k^{(+)}(f)G_S^<(-f)\right] + O(T^2).
+\end{align}
+Here we swapped variables to $f=t-t'$. These expressions have the form of a convolution product. We may change to Fourier space using the transforms given by
+\begin{equation}
+    G^{(+)}(f) = (G^{(-)}(-f))^* = \int \frac{dE}{2\pi\hbar} G^{(+)}(E)\,e^{-\frac{ifE}{\hbar}},
+\end{equation}
+\begin{equation}
+    G^<(f) = \int \frac{dE}{2\pi\hbar}G^<(E)\,e^{-\frac{ifE}{\hbar}},
+\end{equation}
+and thus
+\begin{equation}
+     \langle\hat{d}^\dagger\hat{c}_k\rangle = -i\hbar T\int\frac{dE}{2\pi\hbar}\left[G^{(-)}_S(E)G_k^<(E) + G_k^{(+)}(E)G_S^<(E)\right] + O(T^2).
+\end{equation}
+To proceed we must introduce the spectral weight $A(E)$, which is defined as
+\begin{equation}
+    A(E) \equiv i\hbar\left[G^{(+)}(E)-G^{(-)}(E)\right] = 2i\hbar \Im \{G^{(+)}(E)\} = -2i\hbar\Im\{G^{(-)}(E)\},
+\end{equation}
+which is decidedly real. By formally introducing a sum over all eigenstates within the expectation values, the following important result may be derived:
+\begin{equation}
+    G^<(E) = \frac{i}{\hbar}N(E)A(E),
+\end{equation}
+where $N(E)$ is the distribution function. This result is referred to as the \textit{fluctuation-dissipation} theorem, as it relates information about fluctuations (stored in $G^<(E)$) to information about dissipation (which is what $A(E)$ describes). Using this result we find
+\begin{equation}
+     \langle\hat{d}^\dagger\hat{c}_k\rangle = T\int\frac{dE}{2\pi\hbar}\left[G^{(-)}_S(E)N_N(E)A_k(E) + G_k^{(+)}(E)N_S(E)A_S(E)\right] + O(T^2),
+\end{equation}
+where the subscript $_N$ refers to "normal metal". We thus find that for the expectation value of the current 
+\begin{align}
+    \langle\hat{I}\rangle &= -T \frac{2ie}{\hbar}\sum_k\Im \{\langle \hat{d}^\dagger\hat{c_k} \rangle \}, \nonumber\\
+    &= -|T|^2\frac{2ie}{\hbar} \sum_k \int \frac{dE}{2\pi\hbar}\left[N_N(E)A_k(E) \Im\{G_S^{(-)}(E)\} + N_S(E)A_S(E)\Im \{G_k^{(+)}(E)\}\right],\nonumber \\
+    &= \frac{e|T|^2}{\hbar^2}\sum_k \int \frac{dE}{2\pi\hbar} A_k(E)A_S(E)\left[N_N(E)-N_S(E)\right].
+\end{align}
+Now for the free case we may explicitly fill in the expression for the Green's function, giving
+\begin{equation}
+    A_k(E) = i\hbar\left[\frac{1}{E-\xi_k+i\epsilon} - \frac{1}{E-\xi_k-i\epsilon}\right] = 2\pi\hbar \delta(E-\xi_k),
+\end{equation}
+which follows from the Sokhotski-Plemelj theorem. If we treat both the sample and the tip as a free electron gas, we find
+\begin{equation}
+    \langle\hat{I}\rangle =  \frac{2\pi e}{\hbar}|T|^2 \sum_k \int dE \, \delta(E-\xi_k)\delta(E-\xi_S)\left[N_N(E)-N_S(E)\right],
+\end{equation}
+and using that in our simplified model we have the density of states of the different metals given by $\rho_S(E) = \delta(E-\xi_S)$ and $\rho_N(E) = \sum_k\delta(E-\xi_k)$, we find the final expression
+\begin{equation}
+    \langle\hat{I}\rangle = \frac{2\pi e}{\hbar}|T|^2 \int dE\, \rho_S(E)\rho_N(E)\left[N_N(E)-N_S(E)\right].
 \end{equation}
 
-Filling in these solutions we get the following expression for the current
-\begin{equation}
-    \langle \hat{I} \rangle = -|T|^2\frac{ie}{\hbar}\sum_{k}\int_{-\infty}^{\infty}\left[TG_k^{(+)}(t-t')\langle\hat{d}_H^\dagger(t)\hat{d}_H(t')\rangle+\right]
-\end{equation}
+
+
+
+
+
+
+
+
 \begin{tcolorbox}[title = Sources, colback = gray!5, colframe=gray]
     \begin{enumerate}
         \item Bachelor's Thesis Laura Voordouw
