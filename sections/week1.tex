@@ -128,40 +128,38 @@ We find for the noise
     S(t-t') &= e^2|T|^2 \sum_k \left[G^>_{k,0}(t-t')G^<_{S,0}(t'-t) + G^<_{k,0}(t'-t)G^>_{S,0}(t-t')\right] + O(T^3),\\
     &= e^2|T|^2 \sum_k \left[G^>_{k,0}(f)G^<_{S,0}(-f) + G^<_{k,0}(-f)G^>_{S,0}(f)\right] + O(T^3).
 \end{align}
-The noise that we're interested in is the shot noise, which is frequency independent, hence we look at the time averaged noise, the $\omega = 0$ component. Denoting $\tilde{S}(E)$ the Fourier transform of the noise
+The noise that we're interested in is the shot noise, which is frequency independent, hence we look at the time averaged noise, the $\omega = 0$ component. Denoting $\tilde{S}(E)$ the \textit{one-sided} (by time reversal symmetry this just yields a factor of two) power spectrum of the noise, we find
 \begin{equation}
-    \tilde{S}(0) = e^2|T|^2 \sum_k \int df \,\left[G^>_{k,0}(f)G^<_{S,0}(-f) + G^<_{k,0}(-f)G^>_{S,0}(f)\right] + O(T^3),
+    \tilde{S}(0) = 2e^2|T|^2 \sum_k \int df \,\left[G^>_{k,0}(f)G^<_{S,0}(-f) + G^<_{k,0}(-f)G^>_{S,0}(f)\right] + O(T^3),
 \end{equation}
-we once again recover the form of a convolution. Fourier transforming yields
+we once again recover the form of a convolution. Fourier transforming the Green's functions yields
 \begin{align}
-    \tilde{S}(0) &= e^2|T|^2 \sum_k \int \frac{dE}{2\pi\hbar} \left[G^>_{k,0}(E)G^<_{S,0}(E) + G^<_{k,0}(E)G^>_{S,0}(E)\right] + O(T^3),\\
-    &= \frac{e^2}{\hbar^2}|T|^2 \sum_k \int \frac{dE}{2\pi\hbar} A_{S,0}(E)A_{k,0}(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right] + O(T^3), \\
-    &= \frac{2\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right] + O(T^3).
+    \tilde{S}(0) &= 2e^2|T|^2 \sum_k \int \frac{dE}{2\pi\hbar} \left[G^>_{k,0}(E)G^<_{S,0}(E) + G^<_{k,0}(E)G^>_{S,0}(E)\right] + O(T^3),\\
+    &= \frac{2e^2}{\hbar^2}|T|^2 \sum_k \int \frac{dE}{2\pi\hbar} A_{S,0}(E)A_{k,0}(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right] + O(T^3), \\
+    &= \frac{4\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right] + O(T^3).
 \end{align}
 The noise consists of two components, thermal noise, and shot noise. Thermal noise occurs due to the random thermal motion of charge carriers, whereas shot noise is the noise purely due to the effects of the tunneling barrier, which is what we're interested in. We can rewrite 
 \begin{align}
-    \tilde{S}(0)&=\frac{2\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr) \right],\nonumber\\
-    &=\frac{2\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\underbrace{N_S(E)\bigl(1-N_S(E)\bigr) + N_N(E)\bigl(1-N_N(E)\bigr)}_{\text{Thermal noise }S_{\textrm{thermal}}} \nonumber\right. \\
+    \tilde{S}(0)&=\frac{4\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr) \right],\nonumber\\
+    &=\frac{4\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\underbrace{N_S(E)\bigl(1-N_S(E)\bigr) + N_N(E)\bigl(1-N_N(E)\bigr)}_{\text{Thermal noise }S_{\textrm{thermal}}} \nonumber\right. \\
     &\left. + \underbrace{\bigl(N_S(E) - N_N(E)\bigr)^2}_{\text{Shot noise } S_{\textrm{shot}}}\right].
 \end{align}
 At zero temperature the thermal noise $S_{\textrm{thermal}}$ vanishes, whereas the shot noise $S_{\textrm{shot}}$ vanishes at zero bias. The latter is the noise that occurs due to the Poissonian nature of the hopping process. 
 
 At zero temperature, the ratio between the shot noise and the current $\langle\hat{I}\rangle$ (\autoref{eq:current}) is 
 \begin{equation}
-    \frac{S_{\textrm{shot}}}{2e\langle\hat{I}\rangle} = \frac{1}{2};
+    \frac{S_{\textrm{shot}}}{2e\langle\hat{I}\rangle} = 1;
 \end{equation}
-which is not what we expected, it's supposed to be 1.
+which is expected based on the Poissonian nature of shot noise.
 
 \begin{tcolorbox}[title = Questions, colback = gray!5, colframe=black]
     \begin{enumerate}
-        \item I've calculated that $\langle\{\hat{c}_{k,0}(t),\hat{c}_{k,0}^\dagger(t')\}\rangle = \langle\{\hat{c}_{k}(t),\hat{c}_{k}^\dagger(t')\}\rangle_0$. I don't know if that's obvious, but it works out that way. Besides that I'm fine with all of the definitions, but I can't prove the fluctuation-dissipation theorem with the homogeneous operators. I don't think it works out the way that it usually does.
+        \item I've calculated that $\langle\{\hat{c}_{k,0}(t),\hat{c}_{k,0}^\dagger(t')\}\rangle = \langle\{\hat{c}_{k}(t),\hat{c}_{k}^\dagger(t')\}\rangle_0$. I don't know if that's obvious, but it works out that way. Besides that I'm fine with all of the definitions, but I can't prove the fluctuation-dissipation theorem with the homogeneous operators. I don't think it works out the way that it usually does. There might be an error of $O(T)$ in there, which doesn't effect our second order calculations.
         \item The retarded Green's function found in \autoref{eq:d-evolution} has to be the free Green's function. This means that any further calculations refer to the free Green's function, which means that (if fluctuation-dissipation holds) we only get a Fermi distribution, and always just the density of states. Does that make sense?
-        \item Where is the factor of 2?
-        \item I don't think symmetrizing the noise does anything.
         \item How do Wick contractions work here? Mainly I'm just confused about the relation between expectation values of the homogeneous operators and free expectation values of the total operators.
+        \item Calculate the frequency dependence.
     \end{enumerate}
 \end{tcolorbox}
-
 
 
 \begin{tcolorbox}[title = Sources, colback = gray!5, colframe=gray]
@@ -169,6 +167,7 @@ which is not what we expected, it's supposed to be 1.
         \item Bachelor's Thesis Laura Voordouw
         \item Haug - Quantum Kinetics in Transport and Optics of Semiconductors
         \item Bruus - Many-body quantum theory in condensed matter physics
+        \item Martins - Noise in mesoscopic physics
     \end{enumerate}
 \end{tcolorbox}
 
