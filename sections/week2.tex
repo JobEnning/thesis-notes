@@ -1,0 +1,36 @@
+\section{Week 2 - 21/9}
+\subsection{Non-zero energy power spectrum}
+We can explicitly Fourier transform \autoref{eq:autocorrelation} for non-zero energies. This gives the one-sided power spectrum
+\begin{equation}
+    \tilde{S}(E) = 2e^2|T|^2 \sum_k \int df \,\left[G^>_{k,0}(f)G^<_{S,0}(-f) + G^<_{k,0}(-f)G^>_{S,0}(f)\right]e^{i\frac{fE}{\hbar}} + O(T^3).
+\end{equation}
+Fourier transforming the Green's functions we get
+\begin{align}
+    \tilde{S}(E) &= 2e^2|T|^2 \sum_k \int df \int \frac{dE'}{2\pi\hbar} \int\frac{dE''}{2\pi\hbar} \left[G^>_{k,0}(E')G^<_{S,0}(E'')e^{-i\frac{f(E'-E'')}{\hbar}} \right. \nonumber \\ 
+    &\left.+ G^<_{k,0}(E')G^>_{S,0}(E'')e^{-i\frac{f(E''-E')}{\hbar}}\right]e^{i\frac{fE}{\hbar}} + O(T^3), \nonumber\\
+    &=2e^2|T|^2 \sum_k \int \frac{dE'}{2\pi\hbar}\left[G^>_{k,0}(E')G^<_{S,0}(E'-E) + G^<_{k,0}(E')G^>_{S,0}(E'+E)\right] + O(T^3).
+\end{align}
+Once more we apply the fluctuation-dissipation theorem, allowing us to express the power spectrum in terms of the density of states and the distribution function. We find 
+\begin{align}
+    \tilde{S}(E) = \frac{4\pi e^2}{\hbar}|T|^2 \int dE' \rho_N(E')\left[\rho_S(E'-E)(1-N_N(E'))N_S(E'-E)\right.\nonumber\\
+    \left.+\rho_S(E'+E)N_N(E')(1-N_S(E'+E))\right] + O(T^3).
+\end{align}
+
+The density of states of a superconductor is 
+Introducing the tunneling rate $\Gamma_T(E) = \frac{2\pi}{\hbar}|T|^2 \rho_N(E) \approx \Gamma_T$, which we take to be constant, as the density of states of the normal conductor is slowly varying around the Fermi energy. At zero temperature the distribution function reduces to a Heaviside step function centered at the Fermi energy, but in the normal metal the Fermi energy is shifted by the applied voltage, so that it lies at $eV/2$, giving
+\begin{align}
+    N_N(E) = \theta\left(\frac{eV}{2}-E\right); \qquad N_S(E) = \theta\left(-E\right).
+\end{align}
+The factor $1/2$ is because we're using a one-lead model. Assuming both $E$ and $V$ are non-negative, we can simplify the integral down to
+\begin{align}
+    \tilde{S}(E) \overset{T\downarrow0}{=
+    }2e^2\Gamma_T\left[\theta(\frac{eV}{2}-E)\int_E^{\frac{eV}{2}}dE'\,\rho_S(E'-E) + \int_{-E}^{\frac{eV}{2}}dE'\rho_S(E'+E)\right], \\
+    = 2e^2\Gamma_T\left[\theta(\frac{eV}{2}-E)\int_0^{\frac{eV}{2}-E}dE'\,\rho_S(E') + \int_{0}^{\frac{eV}{2}+E}dE'\rho_S(E')\right].
+\end{align}
+Using the BCS theory of superconductivity we can find an expression for $\rho_S(E)$, which we can plug in.
+
+
+
+
+
+

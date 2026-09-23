@@ -124,7 +124,7 @@ Similarly to the lesser Green's function, $G^>(E)$ is also related to the spectr
     G^>(E) = -\frac{i}{\hbar}[1-N(E)]A(E).
 \end{equation}
 We find for the noise
-\begin{align}
+\begin{align}\label{eq:autocorrelation}
     S(t-t') &= e^2|T|^2 \sum_k \left[G^>_{k,0}(t-t')G^<_{S,0}(t'-t) + G^<_{k,0}(t'-t)G^>_{S,0}(t-t')\right] + O(T^3),\\
     &= e^2|T|^2 \sum_k \left[G^>_{k,0}(f)G^<_{S,0}(-f) + G^<_{k,0}(-f)G^>_{S,0}(f)\right] + O(T^3).
 \end{align}
@@ -140,23 +140,22 @@ we once again recover the form of a convolution. Fourier transforming the Green'
 \end{align}
 The noise consists of two components, thermal noise, and shot noise. Thermal noise occurs due to the random thermal motion of charge carriers, whereas shot noise is the noise purely due to the effects of the tunneling barrier, which is what we're interested in. We can rewrite 
 \begin{align}
-    \tilde{S}(0)&=\frac{4\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr) \right],\nonumber\\
+    \tilde{S}(0)&=\frac{4\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr) \right] + O(T^3),\nonumber\\
     &=\frac{4\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\underbrace{N_S(E)\bigl(1-N_S(E)\bigr) + N_N(E)\bigl(1-N_N(E)\bigr)}_{\text{Thermal noise }S_{\textrm{thermal}}} \nonumber\right. \\
-    &\left. + \underbrace{\bigl(N_S(E) - N_N(E)\bigr)^2}_{\text{Shot noise } S_{\textrm{shot}}}\right].
+    &\left. + \underbrace{\bigl(N_S(E) - N_N(E)\bigr)^2}_{\text{Shot noise } S_{\textrm{shot}}}\right] + O(T^3).
 \end{align}
 At zero temperature the thermal noise $S_{\textrm{thermal}}$ vanishes, whereas the shot noise $S_{\textrm{shot}}$ vanishes at zero bias. The latter is the noise that occurs due to the Poissonian nature of the hopping process. 
 
-At zero temperature, the ratio between the shot noise and the current $\langle\hat{I}\rangle$ (\autoref{eq:current}) is 
+At zero temperature, the ratio between the shot noise and the current $\langle\hat{I}\rangle$ (\autoref{eq:current}) at second order is 
 \begin{equation}
     \frac{S_{\textrm{shot}}}{2e\langle\hat{I}\rangle} = 1;
 \end{equation}
 which is expected based on the Poissonian nature of shot noise.
 
-\begin{tcolorbox}[title = Questions, colback = gray!5, colframe=black]
+\begin{tcolorbox}[title = Questions/Ideas, colback = gray!5, colframe=black]
     \begin{enumerate}
-        \item I've calculated that $\langle\{\hat{c}_{k,0}(t),\hat{c}_{k,0}^\dagger(t')\}\rangle = \langle\{\hat{c}_{k}(t),\hat{c}_{k}^\dagger(t')\}\rangle_0$. I don't know if that's obvious, but it works out that way. Besides that I'm fine with all of the definitions, but I can't prove the fluctuation-dissipation theorem with the homogeneous operators. I don't think it works out the way that it usually does. There might be an error of $O(T)$ in there, which doesn't effect our second order calculations.
-        \item The retarded Green's function found in \autoref{eq:d-evolution} has to be the free Green's function. This means that any further calculations refer to the free Green's function, which means that (if fluctuation-dissipation holds) we only get a Fermi distribution, and always just the density of states. Does that make sense?
-        \item How do Wick contractions work here? Mainly I'm just confused about the relation between expectation values of the homogeneous operators and free expectation values of the total operators.
+        \item I've calculated that $\langle\{\hat{c}_{k,0}(t),\hat{c}_{k,0}^\dagger(t')\}\rangle = \langle\{\hat{c}_{k}(t),\hat{c}_{k}^\dagger(t')\}\rangle_0$. I don't know if that's obvious, but it works out that way. Besides that I'm fine with all of the definitions, but I can't prove the fluctuation-dissipation theorem with the homogeneous operators. I don't think it works out the way that it usually does. There might be an error of $O(T)$ in there, which doesn't effect our second order calculations. \textcolor{blue}{There's no error in there, the definition of the free Green's function is exactly that, i.e. the way you take the $\langle...\rangle_0$ expectation value is by evaluating the temporal evolution of the operators in the free case, and then plugging that in.}
+        \item The retarded Green's function found in \autoref{eq:d-evolution} has to be the free Green's function. This means that any further calculations refer to the free Green's function, which means that (if fluctuation-dissipation holds) we only get a Fermi distribution, and always just the density of states. Does that make sense? \textcolor{blue}{Possibly higher order corrections are the terms that give you the adjusted distribution. Maybe try a fourth order calculation.}
         \item Calculate the frequency dependence.
     \end{enumerate}
 \end{tcolorbox}
