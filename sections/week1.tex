@@ -41,14 +41,14 @@ So that
 \begin{align}
      \langle\hat{d}^\dagger\hat{c}_k\rangle &= -i\hbar T\int dt \, \left[G_{S,0}^{(-)}(t'-t)G_{k,0}^<(t-t')
     +G_{k,0}^{(+)}(t-t')G_{S,0}^<(t'-t)\right] + O(T^2), \nonumber\\
-    &= -i\hbar T \int df\, \left[G_{S,0}^{(-)}(-f)G_{k,0}^<(f) + G_{k,0}^{(+)}(f)G_{S,0}^<(-f)\right] + O(T^2).
+    &= -i\hbar T \int d\tau\, \left[G_{S,0}^{(-)}(-\tau)G_{k,0}^<(\tau) + G_{k,0}^{(+)}(\tau)G_{S,0}^<(-\tau)\right] + O(T^2).
 \end{align}
-Here we swapped variables to $f=t-t'$. These expressions have the form of a convolution product. We may change to Fourier space using the transforms given by
+Here we swapped variables to $\tau \equiv t-t'$. These expressions have the form of a convolution product. We may change to Fourier space using the transforms given by
 \begin{equation}
-    G^{(+)}_0(f) = (G^{(-)}_0(-f))^* = \int \frac{dE}{2\pi\hbar} G^{(+)}_0(E)\,e^{-\frac{ifE}{\hbar}},
+    G^{(+)}_0(\tau) = (G^{(-)}_0(-\tau))^* = \int \frac{dE}{2\pi\hbar} G^{(+)}_0(E)\,e^{-\frac{i\tau E}{\hbar}},
 \end{equation}
 \begin{equation}
-    G^<_0(f) = \int \frac{dE}{2\pi\hbar}G^<_0(E)\,e^{-\frac{ifE}{\hbar}},
+    G^<_0(\tau) = \int \frac{dE}{2\pi\hbar}G^<_0(E)\,e^{-\frac{i\tau E}{\hbar}},
 \end{equation}
 and thus
 \begin{equation}
@@ -123,14 +123,14 @@ Similarly to the lesser Green's function, $G^>(E)$ is also related to the spectr
 \begin{equation}
     G^>(E) = -\frac{i}{\hbar}[1-N(E)]A(E).
 \end{equation}
-We find for the noise
+We find for the noise (again with $\tau \equiv t-t'$)
 \begin{align}\label{eq:autocorrelation}
     S(t-t') &= e^2|T|^2 \sum_k \left[G^>_{k,0}(t-t')G^<_{S,0}(t'-t) + G^<_{k,0}(t'-t)G^>_{S,0}(t-t')\right] + O(T^3),\\
-    &= e^2|T|^2 \sum_k \left[G^>_{k,0}(f)G^<_{S,0}(-f) + G^<_{k,0}(-f)G^>_{S,0}(f)\right] + O(T^3).
+    &= e^2|T|^2 \sum_k \left[G^>_{k,0}(\tau)G^<_{S,0}(-\tau) + G^<_{k,0}(-\tau)G^>_{S,0}(\tau)\right] + O(T^3).
 \end{align}
 The noise that we're interested in is the shot noise, which is frequency independent, hence we look at the time averaged noise, the $\omega = 0$ component. Denoting $\tilde{S}(E)$ the \textit{one-sided} (by time reversal symmetry this just yields a factor of two) power spectrum of the noise, we find
 \begin{equation}
-    \tilde{S}(0) = 2e^2|T|^2 \sum_k \int df \,\left[G^>_{k,0}(f)G^<_{S,0}(-f) + G^<_{k,0}(-f)G^>_{S,0}(f)\right] + O(T^3),
+    \tilde{S}(0) = 2e^2|T|^2 \sum_k \int d\tau \,\left[G^>_{k,0}(\tau)G^<_{S,0}(-\tau) + G^<_{k,0}(-\tau)G^>_{S,0}(\tau)\right] + O(T^3),
 \end{equation}
 we once again recover the form of a convolution. Fourier transforming the Green's functions yields
 \begin{align}
