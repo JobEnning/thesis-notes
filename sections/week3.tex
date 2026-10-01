@@ -1,0 +1,96 @@
+\section{Week 3 - 28/9}
+\subsection{Resummation for current expression}
+Firstly, we'd like to find a general expression for the current in the model, without approximating the noise. For this we solve the self consistent set of equations given by \autoref{eq:c-evolution} and \autoref{eq:d-evolution}. Transforming to Fourier space we find
+\begin{eqnarray}\label{eq:c-fourier}
+    \hat{c}_k(E) = \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E)\hat{d}(E), \\ \label{eq:d-fourier}
+    \hat{d}(E) = \hat{d}_0(E) + T G_{S,0}^{(+)}(E)\sum_k \hat{c}_k(E).
+\end{eqnarray}
+Focussing on the equation for $\hat{d}(E)$, we substitute \ref{eq:c-fourier}, giving 
+\begin{equation}
+    \hat{d}(E) = \hat{d}_0(E) + T G_{S,0}^{(+)}(E)\sum_k \hat{c}_{k,0}(E) + T^2 G_{S,0}^{(+)}(E)\sum_k G_{k,0}^{(+)}(E)\hat{d}(E),
+\end{equation}
+which is solved by
+\begin{equation}
+    \hat{d}(E) = \frac{\hat{d}_0(E) + T G_{S,0}^{(+)}(E)\sum_k \hat{c}_{k,0}(E)}{1- T^2 G_{S,0}^{(+)}(E)\sum_k G_{k,0}^{(+)}(E)}.
+\end{equation}
+Similarly, for $\hat{c}_k(E)$ we can substitute \autoref{eq:d-fourier} in \autoref{eq:c-fourier}, so that
+\begin{equation}
+    \hat{c}_k(E) = \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E) \hat{d}_0(E) + T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\sum_q \hat{c}_q(E),
+\end{equation}
+which is less trivial to solve. Our system doesn't conserve momentum, due to a lack of translational invariance. It does conserve energy, as the Hamiltonian is symmetric under time translations. The absence of momentum conservation means that electrons of different momenta may couple when they tunnel back and forth through the sample. This is also what you can see in the above equation. To solve the equation we write this as 
+\begin{equation}
+    \sum_q \left[\delta_{kq} - T^2G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\right]\hat{c}_q(E) = \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E) \hat{d}_0(E).
+\end{equation}
+Which is inverted by
+\begin{align}
+    \hat{c}_k(E) &= \sum_l \left[\delta_{kl} + \frac{T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\right] \left(\hat{c}_{l,0}(E) + T G_{l,0}^{(+)}(E) \hat{d}_0(E)\right), \nonumber\\
+    &= \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E) \hat{d}_0(E) + \frac{T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\sum_q\hat{c}_{q,0}(E) \nonumber\\
+    & \quad + \frac{T^3 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\sum_qG_{q,0}^{(+)}(E)\hat{d}_0(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}.
+\end{align}
+Combining the second and fourth term we get
+\begin{align}
+    \hat{c}_k(E) &= \hat{c}_{k,0}(E) + \frac{T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\sum_q\hat{c}_{q,0}(E)\nonumber\\
+    & \quad+ TG_{k,0}^{(+)}(E)\hat{d}_0(E) \left(1 + \frac{T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\right),\nonumber\\
+    &= \hat{c}_{k,0}(E) + \frac{TG_{k,0}^{(+)}(E)\hat{d}_0(E) + T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\sum_q\hat{c}_{q,0}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}.
+\end{align}
+
+\subsection{Symmetrizing the noise}
+The one-sided power spectrum is properly defined as
+\begin{equation}
+    \tilde{S}(E) = \int d\tau \left(S(\tau) + S(-\tau)\right)e^{\frac{iE\tau}{\hbar}} = \int d\tau\,S(\tau)\left(e^{\frac{iE\tau}{\hbar}}+e^{-\frac{iE\tau}{\hbar}}\right),
+\end{equation}
+i.e. the noise should be symmetrized. This gives
+\begin{align}
+    \tilde{S}(E) &= e^2|T|^2 \sum_k \int d\tau \int \frac{dE'}{2\pi\hbar} \int\frac{dE''}{2\pi\hbar} \left[G^>_{k,0}(E')G^<_{S,0}(E'')e^{-\frac{i\tau(E'-E'')}{\hbar}} \right. \nonumber \\ 
+    &\left.\quad+ G^<_{k,0}(E')G^>_{S,0}(E'')e^{-\frac{i\tau(E''-E')}{\hbar}}\right]\left(e^{\frac{iE\tau}{\hbar}}+e^{-\frac{iE\tau}{\hbar}}\right) + O(T^3), \nonumber\\
+    &=e^2|T|^2 \sum_k \int \frac{dE'}{2\pi\hbar}\left(G^>_{k,0}(E')\left[G^<_{S,0}(E'-E) + G^<_{S,0}(E'+E)\right]+\right.\nonumber\\
+    &\left. \quad G^<_{k,0}(E')\left[G^>_{S,0}(E'-E) + G^>_{S,0}(E'+E)\right]\right)+ O(T^3).
+\end{align}
+Using fluctuation-dissipation we get
+\begin{align}
+    \tilde{S}(E) = \frac{2\pi e^2|T|^2}{\hbar} \int dE'\,\rho_N(E')\biggl((1-N_N(E'))\bigl[\rho_S(E'-E)N_S(E'-E) + \rho_S(E'+E)N_S(E'+E)\bigr]\nonumber\\
+    + N_N(E')\bigl[\rho_S(E'-E)(1-N_S(E'-E)) + \rho_S(E'+E)(1-N_S(E'+E))\bigr]\biggr) + O(T^3).
+\end{align}
+We introduce the tunneling rate $\Gamma_T(E) = \frac{2\pi}{\hbar}|T|^2 \rho_N(E) \approx \Gamma_T$, which we take to be constant, as the density of states of the normal conductor is slowly varying around the Fermi energy. At zero temperature the distribution function reduces to a Heaviside step function centered at the Fermi energy, but in the normal metal the Fermi energy is shifted by the applied voltage, so that the step lies at $eV/2$, giving
+\begin{equation}
+    N_N(E) = \theta\left(\frac{eV}{2}-E\right); \qquad N_S(E) = \theta\left(-E\right).
+\end{equation}
+The factor $1/2$ is because we're using a one-lead model. Using $1-\theta(x) = \theta(-x)$ we get
+\begin{align}
+    \tilde{S}(E) = e^2\Gamma_T \int dE'\,\left(\theta\left(E'-\frac{eV}{2}\right)\left[\rho_S(E'-E)\theta\left(E-E'\right) + \rho_S(E'+E)\theta\left(-E-E'\right)\right]\right.\nonumber\\
+    \left.+ \theta\left(\frac{eV}{2}-E'\right)\left[\rho_S(E'-E)\theta\left(E'-E\right) + \rho_S(E'+E)\theta\left(E'+E\right)\right]\right) + O(T^3).
+\end{align}
+We recognize each term has a lower and upper bound on $E'$, so we can simplify further to 
+\begin{align}
+    \tilde{S}(E) &=e^2 \Gamma_T \left(\theta\left(E-\frac{eV}{2}\right)\int_{-(E-eV/2)}^0dE'\,\rho_S(E') + \theta\left(-E-\frac{eV}{2}\right)\int_{-(-E-eV/2)}^0dE'\,\rho_S(E')\right.\nonumber\\ 
+    &\left.\qquad\qquad\theta\left(\frac{eV}{2}-E\right)\int_0^{eV/2-E}dE'\,\rho_S(E') + \theta\left(\frac{eV}{2}+E\right)\int_0^{eV/2+E}dE'\,\rho_S(E')\right) + O(T^3).
+\end{align}
+Which simplifies further to (because the density of states is strictly positive)
+\begin{align}
+    \tilde{S}(E) &=e^2 \Gamma_T \left(\left|\int_0^{eV/2-E}dE'\,\rho_S(E')\right|+ \left|\int_0^{eV/2+E}dE'\,\rho_S(E')\right|\right)+O(T^3).
+\end{align}
+Where at this order we just have the free density of states. However, when we replace the free Green's function by the total Green's functions $G^{(+)}(E)$ we find the full density of states, which is a Lorentzian, given by 
+\begin{equation}
+    \rho_S(E) = \frac{i}{2\pi}\left[\frac{1}{E-\xi_S-\hbar\Sigma} - \frac{1}{E-\xi_S-\hbar\Sigma^*}\right] = \frac{1}{\pi}\frac{-\hbar\mathfrak{Im}(\Sigma)}{(E-\xi_S-\hbar\mathfrak{Re}(\Sigma))^2+\hbar^2\mathfrak{Im}^2(\Sigma)},
+\end{equation}
+where $\Sigma$ is the self-energy of the sample, given by
+\begin{equation}
+    \Sigma = |T|^2 \sum_k\frac{1}{E-\xi_k+i\eta}.
+\end{equation}
+The real and imaginary parts are then given by (after $\eta \downarrow 0$)
+\begin{gather}
+    \hbar\mathfrak{Re}(\Sigma) = |T|^2\sum_k\frac{1}{E-\xi_k},\\
+    \hbar\mathfrak{Im}(\Sigma) = -\pi|T|^2\sum_k\delta(E-\xi_k) = -\pi|T|^2\rho_N(E) = -\frac{\hbar\Gamma_T}{2}.
+\end{gather}
+We can ignore the shift to the energy of the state due to the real part, as it's small \textcolor{red}{(although I'm not sure why)}. The imaginary part we can relate to the tunneling rate $\Gamma_T$ defined prior, which we take to be energy independent. We find the density of states given by
+\begin{equation}
+    \rho_S(E) = \frac{\hbar\Gamma_T}{2\pi}\frac{1}{(E-\xi_S)^2+(\hbar\Gamma_T/2)^2} = \frac{2}{\pi\hbar\Gamma_T}\frac{1}{\left(\frac{2(E-\xi_S)}{\hbar\Gamma_T}\right)^2+1}.
+\end{equation}
+Which we can explicitly integrate
+\begin{align}
+    \tilde{S}(E) &= \frac{2e^2}{\pi\hbar}\left(\left|\int_0^{eV/2-E}dE'\,\frac{1}{\left(\frac{2(E'-\xi_S)}{\hbar\Gamma_T}\right)^2+1}\right|+\left|\int_0^{eV/2+E}dE'\frac{1}{\left(\frac{2(E'-\xi_S)}{\hbar\Gamma_T}\right)^2+1}\right|\right)\\
+    &=\frac{e^2\Gamma_T}{\pi}\left(\left|\arctan\left[\frac{2}{\hbar \Gamma_T}(eV/2-E-\xi_S)\right]-\arctan\left[-\frac{2}{\hbar \Gamma_T}\xi_S\right]\right|\right.\\
+    &\left.\qquad\qquad+\left|\arctan\left[\frac{2}{\hbar \Gamma_T}(eV/2+E-\xi_S)\right]-\arctan\left[-\frac{2}{\hbar \Gamma_T}\xi_S\right]\right|
+    \right)
+\end{align}
+
