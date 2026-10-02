@@ -11,9 +11,9 @@ Focussing on the equation for $\hat{d}(E)$, we substitute \ref{eq:c-fourier}, gi
 \end{equation}
 which is solved by
 \begin{equation}
-    \hat{d}(E) = \frac{\hat{d}_0(E) + T G_{S,0}^{(+)}(E)\sum_k \hat{c}_{k,0}(E)}{1- T^2 G_{S,0}^{(+)}(E)\sum_k G_{k,0}^{(+)}(E)}.
+    \hat{d}(E) = \frac{\hat{d}_0(E) + T G_{S,0}^{(+)}(E)\sum_k \hat{c}_{k,0}(E)}{1- T^2 G_{S,0}^{(+)}(E)\sum_k G_{k,0}^{(+)}(E)} = \left(1+\hbar\Sigma_S^{(+)}(E)\right)\hat{d}_0(E)+TG_{S}^{(+)}(E)\sum_k\hat{c}_{k,0}(E),
 \end{equation}
-Similarly, for $\hat{c}_k(E)$ we can substitute \autoref{eq:d-fourier} in \autoref{eq:c-fourier}, so that
+where $G_S^{(+)}(E) = ((G_{S,0}^{(+)})^{-1} - T^2\sum_kG_{k,0}^{(+)}(E))^{-1}$ is the total retarded Green's function in the sample, and the retarded self-energy of the sample is given by $\hbar\Sigma^{(+)}_S(E) = T^2\sum_k G_{k,0}^{(+)}(E)$. Similarly, for $\hat{c}_k(E)$ we can substitute \autoref{eq:d-fourier} in \autoref{eq:c-fourier}, so that
 \begin{equation}
     \hat{c}_k(E) = \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E) \hat{d}_0(E) + T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\sum_q \hat{c}_q(E),
 \end{equation}
@@ -21,18 +21,35 @@ which is less trivial to solve. Our system doesn't conserve momentum, due to a l
 \begin{equation}
     \sum_q \left[\delta_{kq} - T^2G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\right]\hat{c}_q(E) = \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E) \hat{d}_0(E).
 \end{equation}
-Which is inverted by
+Which is inverted by using $\sum_l[\delta_{kl} + T^2 G_{k,0}^{(+)}(E)G_S^{(+)}(E)][\delta_{lq} - T^2G_{l,0}^{(+)}(E)G_{S,0}^{(+)}(E)] = \delta_{kq}$ as is readily checked (note the total Green's function)
+\newline
 \begin{align}
-    \hat{c}_k(E) &= \sum_l \left[\delta_{kl} + \frac{T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\right] \left(\hat{c}_{l,0}(E) + T G_{l,0}^{(+)}(E) \hat{d}_0(E)\right), \nonumber\\
-    &= \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E) \hat{d}_0(E) + \frac{T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\sum_q\hat{c}_{q,0}(E) \nonumber\\
-    & \quad + \frac{T^3 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\sum_qG_{q,0}^{(+)}(E)\hat{d}_0(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}.
+    \hat{c}_k(E) &= \sum_l \left[\delta_{kl} + T^2 G_{k,0}^{(+)}(E)G_S^{(+)}(E)\right] \left(\hat{c}_{l,0}(E) + T G_{l,0}^{(+)}(E) \hat{d}_0(E)\right), \nonumber\\
+    &= \hat{c}_{k,0}(E) + T G_{k,0}^{(+)}(E) \hat{d}_0(E) + T^2 G_{k,0}^{(+)}(E)G_S^{(+)}(E)\sum_q\hat{c}_{q,0}(E) \nonumber\\
+    & \quad + T^3 G_{k,0}^{(+)}(E)G_S^{(+)}(E)\sum_qG_{q,0}^{(+)}(E)\hat{d}_0(E).
 \end{align}
 Combining the second and fourth term we get
 \begin{align}
-    \hat{c}_k(E) &= \hat{c}_{k,0}(E) + \frac{T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\sum_q\hat{c}_{q,0}(E)\nonumber\\
-    & \quad+ TG_{k,0}^{(+)}(E)\hat{d}_0(E) \left(1 + \frac{T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}\right),\nonumber\\
-    &= \hat{c}_{k,0}(E) + \frac{TG_{k,0}^{(+)}(E)\hat{d}_0(E) + T^2 G_{k,0}^{(+)}(E)G_{S,0}^{(+)}(E)\sum_q\hat{c}_{q,0}(E)}{1-T^2 G_{S,0}^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)}.
+    \hat{c}_k(E) &= \hat{c}_{k,0}(E) + T^2 G_{k,0}^{(+)}(E)G_S^{(+)}(E)\sum_q\hat{c}_{q,0}(E) + TG_{k,0}^{(+)}(E) \underbrace{\left(1 + T^2 G_S^{(+)}(E)\sum_q G_{q,0}^{(+)}(E)\right)}_{=\left(1+\hbar\Sigma^{(+)}_S(E)G_S^{(+)}(E)\right)}\hat{d}_0(E),\nonumber\\
+    &= \hat{c}_{k,0}(E) + T^2 G_{k,0}^{(+)}(E)G_S^{(+)}(E)\sum_q\hat{c}_{q,0}(E)+ TG_{k,0}^{(+)}(E)\left(1+\hbar\Sigma^{(+)}_S(E)G_S^{(+)}(E)\right)\hat{d}_0(E).
 \end{align}
+We can now fill these equations in into $\langle \hat{d}^\dagger(t)\hat{c}_k(t)\rangle$, 
+\begin{equation}
+    \langle \hat{d}^\dagger(t)\hat{c}_k(t)\rangle = \int\frac{dE}{2\pi\hbar}\frac{dE'}{2\pi\hbar}e^{-\frac{i(E'-E)t}{\hbar}}\langle\hat{d}^\dagger(E)\hat{c}_k(E')\rangle.
+\end{equation}
+The Hamiltonian is has time translation symmetry, so that the correlators are energy-conserving, i.e. $\langle \hat{d}^\dagger(E)\hat{c}_k(E')\rangle = 2\pi\hbar\delta(E-E')\langle \hat{d}^\dagger(E)\hat{c}_k(E)\rangle$. The crossterm correlators of the free operators are zero by definition, including the crossterms of different tip momenta, i.e. for $k\neq q$ we have $\langle \hat{c}_{k,0}(E)\hat{c}_{q,0}(E)\rangle =0$. This means we get
+\begin{align}
+    \langle \hat{d}^\dagger(t)\hat{c}_k(t)\rangle &= \int\frac{dE}{2\pi\hbar}\langle\hat{d}^\dagger(E)\hat{c}_k(E)\rangle,\nonumber\\
+    &=\int\frac{dE}{2\pi\hbar}\left[\left(1 + \hbar\Sigma_S^{(-)}(E)G_S^{(-)}(E)\right)TG_{k,0}^{(+)}(E)\left(1+\hbar\Sigma^{(+)}_S(E)G_S^{(+)}(E)\right)\langle\hat{d}^\dagger_0(E)\hat{d}_0(E)\rangle\right. \\
+    &\left.+ TG_{S}^{(-)}(E)\langle\hat{c}^\dagger_{k,0}(E)\hat{c}_{k,0}(E)\rangle+T^3G_{S}^{(-)}(E)G_{k,0}^{(+)}(E)G_S^{(+)}(E)\sum_q\langle\hat{c}^\dagger_{q,0}(E)\hat{c}_{q,0}(E)\rangle\right]
+\end{align}
+
+
+
+
+
+
+
 
 \subsection{Symmetrizing the noise}
 The one-sided power spectrum is properly defined as
@@ -88,9 +105,38 @@ We can ignore the shift to the energy of the state due to the real part, as it's
 \end{equation}
 Which we can explicitly integrate
 \begin{align}
-    \tilde{S}(E) &= \frac{2e^2}{\pi\hbar}\left(\left|\int_0^{eV/2-E}dE'\,\frac{1}{\left(\frac{2(E'-\xi_S)}{\hbar\Gamma_T}\right)^2+1}\right|+\left|\int_0^{eV/2+E}dE'\frac{1}{\left(\frac{2(E'-\xi_S)}{\hbar\Gamma_T}\right)^2+1}\right|\right)\\
+    \tilde{S}(E) &= \frac{2e^2}{\pi\hbar}\left(\left|\int_0^{eV/2-E}dE'\,\frac{1}{\left(\frac{2(E'-\xi_S)}{\hbar\Gamma_T}\right)^2+1}\right|+\left|\int_0^{eV/2+E}dE'\frac{1}{\left(\frac{2(E'-\xi_S)}{\hbar\Gamma_T}\right)^2+1}\right|\right),\\
     &=\frac{e^2\Gamma_T}{\pi}\left(\left|\arctan\left[\frac{2}{\hbar \Gamma_T}(eV/2-E-\xi_S)\right]-\arctan\left[-\frac{2}{\hbar \Gamma_T}\xi_S\right]\right|\right.\\
     &\left.\qquad\qquad+\left|\arctan\left[\frac{2}{\hbar \Gamma_T}(eV/2+E-\xi_S)\right]-\arctan\left[-\frac{2}{\hbar \Gamma_T}\xi_S\right]\right|
-    \right)
+    \right).
 \end{align}
+The current is given by \autoref{eq:current}, which at zero temperature and the above approximations reduces to
+\begin{align}
+    \langle \hat{I} \rangle &= e\Gamma_T\int_0^{eV/2}dE\,\rho_S(E),\\
+    &=\frac{2e}{\pi\hbar}\int_0^{eV/2}dE\,\frac{1}{\left(\frac{2(E-\xi_S)}{\hbar\Gamma_T}\right)^2+1},\\
+    &=\frac{e\Gamma_T}{\pi}\left(\arctan\left[\frac{2}{\hbar \Gamma_T}(eV/2-\xi_S)\right]-\arctan\left[-\frac{2}{\hbar \Gamma_T}\xi_S\right]\right).
+\end{align}
+Using this we can plot the Fano factor as a function of energy (at zero temperature there is no thermal noise). 
+\begin{tcolorbox}[title = Questions/Ideas, colback = gray!5, colframe=black]
+    \begin{enumerate}
+        \item The graph of the noise spectrum dips below its value at zero, which means that the shot noise can't be white noise. Why not?
+        \item I'm not exactly sure what the results would be if we would explicitly carry out the resummation, but I'm not sure you'd just get the total Green's function.
+        \item \textcolor{blue}{Use $G_0^{-1} = G^{-1}+\hbar\Sigma$ to further simplify the expression for $\langle\hat{d}^\dagger\hat{c}_k\rangle$}
+        \item \textcolor{blue}{Calculate the Fano factor for large energy in the Lorentzian case.}
+        \item \textcolor{blue}{Make graphs of the noise spectrum for constant density, and compare to paper by Schoelkopf.}
+        \item \textcolor{blue}{Do calculation of noise spectrum for a superconducting DOS.}
+        \item \textcolor{blue}{Do a fourth order calculation, or a time space calculation. What is the groundstate, and how does the evolution work out (do we take $t_0 \rightarrow -\infty$)?}
+    \end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Sources, colback = gray!5, colframe=gray]
+    \begin{enumerate}
+        \item Martins - Noise in mesoscopic physics
+        \item Schoelkopf - Frequency Dependence of Shot Noise in a Diffusive Mesoscopic Conductor
+    \end{enumerate}
+\end{tcolorbox}
+
+\begin{tcolorbox}[title = Roadmap, colback = red!7!white, colbacktitle = red!95!black]
+    There's two separate calculations going on. The first is the resummation of the Green's function, the second is the calculation of the noise spectrum. 
+\end{tcolorbox}
 
