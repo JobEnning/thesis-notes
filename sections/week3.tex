@@ -64,7 +64,7 @@ i.e. the noise should be symmetrized. This gives
     &\left. \quad G^<_{k,0}(E')\left[G^>_{S,0}(E'-E) + G^>_{S,0}(E'+E)\right]\right)+ O(T^3).
 \end{align}
 Using fluctuation-dissipation we get
-\begin{align}
+\begin{align}\label{eq:shotnoise}
     \tilde{S}(E) = \frac{2\pi e^2|T|^2}{\hbar} \int dE'\,\rho_N(E')\biggl((1-N_N(E'))\bigl[\rho_S(E'-E)N_S(E'-E) + \rho_S(E'+E)N_S(E'+E)\bigr]\nonumber\\
     + N_N(E')\bigl[\rho_S(E'-E)(1-N_S(E'-E)) + \rho_S(E'+E)(1-N_S(E'+E))\bigr]\biggr) + O(T^3).
 \end{align}
@@ -83,9 +83,9 @@ We recognize each term has a lower and upper bound on $E'$, so we can simplify f
     &\left.\qquad\qquad\theta\left(\frac{eV}{2}-E\right)\int_0^{eV/2-E}dE'\,\rho_S(E') + \theta\left(\frac{eV}{2}+E\right)\int_0^{eV/2+E}dE'\,\rho_S(E')\right) + O(T^3).
 \end{align}
 Which simplifies further to (because the density of states is strictly positive)
-\begin{align}
-    \tilde{S}(E) &=e^2 \Gamma_T \left(\left|\int_0^{eV/2-E}dE'\,\rho_S(E')\right|+ \left|\int_0^{eV/2+E}dE'\,\rho_S(E')\right|\right)+O(T^3).
-\end{align}
+\begin{equation}
+    \tilde{S}(E) =e^2 \Gamma_T \left(\left|\int_0^{eV/2-E}dE'\,\rho_S(E')\right|+ \left|\int_0^{eV/2+E}dE'\,\rho_S(E')\right|\right)+O(T^3).
+\end{equation}
 Where at this order we just have the free density of states. However, when we replace the free Green's function by the total Green's functions $G^{(+)}(E)$ we find the full density of states, which is a Lorentzian, given by 
 \begin{equation}
     \rho_S(E) = \frac{i}{2\pi}\left[\frac{1}{E-\xi_S-\hbar\Sigma} - \frac{1}{E-\xi_S-\hbar\Sigma^*}\right] = \frac{1}{\pi}\frac{-\hbar\mathfrak{Im}(\Sigma)}{(E-\xi_S-\hbar\mathfrak{Re}(\Sigma))^2+\hbar^2\mathfrak{Im}^2(\Sigma)},
@@ -116,7 +116,7 @@ The current is given by \autoref{eq:current}, which at zero temperature and the 
     &=\frac{2e}{\pi\hbar}\int_0^{eV/2}dE\,\frac{1}{\left(\frac{2(E-\xi_S)}{\hbar\Gamma_T}\right)^2+1},\\
     &=\frac{e\Gamma_T}{\pi}\left(\arctan\left[\frac{2}{\hbar \Gamma_T}(eV/2-\xi_S)\right]-\arctan\left[-\frac{2}{\hbar \Gamma_T}\xi_S\right]\right).
 \end{align}
-Using this we can plot the Fano factor as a function of energy (at zero temperature there is no thermal noise). 
+Using this we can plot the Fano factor as a function of energy (at zero temperature there is no thermal noise). For this see file "energy-spectrum-lorentzian.nb".
 \begin{tcolorbox}[title = Questions/Ideas, colback = gray!5, colframe=black]
     \begin{enumerate}
         \item The graph of the noise spectrum dips below its value at zero, which means that the shot noise can't be white noise. Why not?
@@ -131,6 +131,7 @@ Using this we can plot the Fano factor as a function of energy (at zero temperat
 
 \begin{tcolorbox}[title = Sources, colback = gray!5, colframe=gray]
     \begin{enumerate}
+        \itemsep0em
         \item Martins - Noise in mesoscopic physics
         \item Schoelkopf - Frequency Dependence of Shot Noise in a Diffusive Mesoscopic Conductor
     \end{enumerate}
@@ -138,5 +139,24 @@ Using this we can plot the Fano factor as a function of energy (at zero temperat
 
 \begin{tcolorbox}[title = Roadmap, colback = red!7!white, colbacktitle = red!95!black]
     There's two separate calculations going on. The first is the resummation of the Green's function, the second is the calculation of the noise spectrum. 
+
+    \textbf{Resummation of the Green's function}
+    \begin{enumerate}
+        \itemsep0em
+        \item Answer the questions: What is the definition of the expectation value? What are the homogeneous operators? Where does the time dependence go?
+        \item Do a fourth order calculation, purely for clarification
+        \item Do the any order calculation without Fourier space
+        \item Find out what this yields for the current and the noise, does it indeed give a total DOS?
+        \item Try for a different system (two coupled metals? Something that resembles the experiment more accurately)
+    \end{enumerate}
+    \textbf{Noise spectrum}
+    \begin{enumerate}
+        \itemsep0em
+        \item Literature research into frequency dependence of noise (what kind of effects are visible in spectral noise measurement?)
+        \item Read Landauer-Büttiker formalism to understand phenomenological derivations.
+        \item Constant DOS derivation (understand why we can take the DOS constant, i.e. the different approximations at play).
+        \item Understand the zero temperature Lorentzian DOS spectrum.
+        \item Calculate the noise spectrum for a superconductor (See thesis by Lion Pol).
+    \end{enumerate}
 \end{tcolorbox}
 

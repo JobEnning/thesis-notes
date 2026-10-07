@@ -1,0 +1,30 @@
+\section{Week 4 - 5/10}
+As opposed to a Lorentzian DOS, we can model a continuum metal sample by taking $\rho_S(E)$ constant. We can then write
+\begin{align}
+    \tilde{S}(E) = \frac{2\pi e^2}{\hbar}\rho_N(E_F)\rho_S(E_F)\int dE'\biggl((1-N_N(E'))\left[N_S(E'-E) + N_S(E'+E)\right] \\
+    N_N(E')\left[(1-N_S(E'-E)) + (1-N_S(E'+E))\right]\biggr),
+\end{align} 
+which we can separate into a thermal- and shotnoise component by writing 
+\begin{align}
+    \tilde{S}(E) = \frac{2\pi e^2}{\hbar}\rho_N(E_F)\rho_S(E_F)\int dE'\biggl[\underbrace{2\left(\frac{1}{2}\bigl(N_S(E'-E)+N_S(E'+E)\bigr)-N_N(E')\right)^2}_\textrm{Shot noise}\nonumber\\+ \underbrace{\frac{1}{2}\bigl(N_S(E'-E) + N_S(E'+E)\bigr)\bigl(2-N_S(E'-E)-N_S(E'+E)\bigr)
+    +2N_N(E')(1-N_N(E'))}_\textrm{Thermal noise} \biggr]
+\end{align}
+At non-zero temperatures, the occupation numbers are given by
+\begin{equation}
+    N_N(E) = \frac{1}{e^{\beta (E-\frac{eV}{2})} + 1}; \qquad N_S(E) = \frac{1}{e^{\beta E}+1},
+\end{equation}
+with $\beta = 1/(k_BT)$. Note also that 
+\begin{equation}
+    1-N_S(E) = \frac{1}{e^{-\beta E}+1} = N_S(-E),
+\end{equation}
+i.e. the sign of the energy is flipped. Using this we find the one-sided power spectrum  of the noise as (starting with \autoref{eq:shotnoise})
+\begin{align}
+    \tilde{S}(E) = \frac{2\pi e^2}{\hbar}|T|^2\rho_N(E_F)\rho_S(E_F) &\int_{-\infty}^\infty dE'\left[\frac{1}{e^{\beta (\frac{eV}{2} - E')}+1}\left(\frac{1}{e^{\beta (E'-E)}+1}+\frac{1}{e^{\beta (E'+E)}+1}\right)\right. \nonumber\\
+    &\left.+\frac{1}{e^{\beta (E'-\frac{eV}{2})}+1}\left(\frac{1}{e^{-\beta (E'-E)}+1}+\frac{1}{e^{-\beta (E'+E)}+1}\right) \right].
+\end{align}
+This integral can be done analytically using Mathematica, which gives
+\begin{equation}
+    \tilde{S}(E) = \frac{2\pi e^2}{\hbar}|T|^2\rho_N(E_F)\rho_S(E_F)\frac{eV \sinh\left(\beta \frac{eV}{2}\right) - 2 E\sinh\left(\beta E\right)}{\cosh\left(\beta\frac{eV}{2}\right)-\cosh\left(\beta E \right)},
+\end{equation}
+which is calculated and plotted in "constant-dos.nb".
+
