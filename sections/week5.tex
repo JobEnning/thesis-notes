@@ -98,7 +98,7 @@ which is also the same result as the second order calculation when replacing the
 
 With the expression for $\hat{d}(\omega)$ we find
 \begin{align}
-    \langle \hat{d}^\dagger(\omega) \hat{d}(\omega')\rangle &= G^{s(-)}(\omega)\frac{\ta^2}{\hbar^2}\sum_k \langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega)\rangle G^{s(+)}(\omega),\nonumber\\
-    &=G^{s(-)}(\omega)\Sigma^{s<}(\omega)G^{s(+)}(\omega),
+    \langle \hat{d}^\dagger(\omega) \hat{d}(\omega')\rangle &= G^{s(-)}(\omega)\frac{\ta^2}{\hbar^2}\sum_k \langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega')\rangle G^{s(+)}(\omega'),\nonumber\\
+    &=2\pi \delta(\omega-\omega')G^{s(-)}(\omega)\Sigma^{s<}(\omega)G^{s(+)}(\omega'),
 \end{align}
-where we've defined the lesser (or Keldysh) self-energy $\Sigma^{s<}(\omega) = \frac{\ta^2}{\hbar^2}\sum_k\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega)\rangle$. This equation is known as the Keldysh equation, and is a familiar result from non-equilibrium quantum field theory. It turns out, that in the above case, the fully corrected occupation numbers are actually exactly equivalent to the occupation numbers of the tip, that is, the above derivation actually contains the equilibration process. This means that for our simple system we indeed find a zero current.
+where we've defined the lesser (or Keldysh) self-energy $2\pi\delta(\omega-\omega')\Sigma^{s<}(\omega) = \frac{\ta^2}{\hbar^2}\sum_k\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega')\rangle$. This equation is known as the Keldysh equation, and is a familiar result from non-equilibrium quantum field theory. It turns out, that in the above case, the fully corrected occupation numbers are actually exactly equivalent to the occupation numbers of the tip, that is, the above derivation actually contains the equilibration process. This means that for our simple system we indeed find a zero current.
