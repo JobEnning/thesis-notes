@@ -16,12 +16,12 @@ where $\mathfrak{Im}$ denotes the imaginary part, and $e = 1.602\cdot10^{-19}$ t
 \end{eqnarray}
 which have as solutions
 \begin{eqnarray}\label{eq:c-evolution}
-    \hat{c}_k(t) = \hat{c}_{k,0}(t) + \int_{-\infty}^{\infty}dt'\,TG_{k,0}^{(+)}(t-t')\hat{d}(t'), \\ \label{eq:d-evolution}
-    \hat{d}(t) = \hat{d}_{0}(t) + \sum_k\int_{-\infty}^{\infty}dt'\,TG_{S,0}^{(+)}(t-t')\hat{c}_k(t'),
+    \hat{c}_k(t) = \hat{c}_{k,0}(t) + \frac{1}{\hbar}\int_{-\infty}^{\infty}dt'\,TG_{k,0}^{(+)}(t-t')\hat{d}(t'), \\ \label{eq:d-evolution}
+    \hat{d}(t) = \hat{d}_{0}(t) + \frac{1}{\hbar}\sum_k\int_{-\infty}^{\infty}dt'\,TG_{S,0}^{(+)}(t-t')\hat{c}_k(t'),
 \end{eqnarray}
 where $\hat{c}_{k,0}(t)$ and $\hat{d}_0(t)$ are solutions to the homogeneous equations, and the free retarded Green's function $G_{k,0}^{(+)}(t-t')$ is given by
 \begin{equation}
-    G_{k,0}^{(+)}(t-t') \equiv  -\frac{i}{\hbar} \theta(t-t')\langle \{\hat{c}_{k,0}(t), \hat{c}_{k,0}^\dagger(t')\} \rangle = \int_{-\infty}^{\infty}\frac{dE}{2\pi\hbar}\frac{1}{E-\xi_k+i\eta}e^{\frac{-iE (t-t')}{\hbar}}.
+    G_{k,0}^{(+)}(t-t') \equiv  -i \theta(t-t')\langle \{\hat{c}_{k,0}(t), \hat{c}_{k,0}^\dagger(t')\} \rangle = \int_{-\infty}^{\infty}\frac{d\omega}{2\pi}\frac{\hbar}{\hbar\omega-\xi_k+i\eta}e^{-i\omega (t-t')}.
 \end{equation}
 It's conjugate is the free advanced Green's function $G_{k,0}^{(+)}(t-t')$, note the change of sign in the argument
 \begin{equation}
@@ -29,62 +29,62 @@ It's conjugate is the free advanced Green's function $G_{k,0}^{(+)}(t-t')$, note
 \end{equation}
 These are free Green's functions, they ignore the coupling between the tip and the sample. We find
 \begin{equation}
-    \langle\hat{d}^\dagger\hat{c}_k\rangle = T\int dt \, \left[G_{S,0}^{(-)}(t'-t)\langle \hat{c}_{k,0}^\dagger(t') \hat{c}_{k,0}(t)\rangle 
+    \langle\hat{d}^\dagger\hat{c}_k\rangle = \frac{T}{\hbar}\int dt \, \left[G_{S,0}^{(-)}(t'-t)\langle \hat{c}_{k,0}^\dagger(t') \hat{c}_{k,0}(t)\rangle 
     +G_{k,0}^{(+)}(t-t')\langle\hat{d}_0^\dagger(t)\hat{d}_0(t')\rangle\right] + O(T^2).
 \end{equation}
 The expectation values of the homogeneous operators can be expressed in terms of \textit{lesser} Green's functions $G_{0}^{<}(t-t')$,
 \begin{eqnarray}
-    &G_{k,0}^<(t-t') \equiv \frac{i}{\hbar}\langle\hat{c}_{k,0}^\dagger(t')\hat{c}_{k,0}(t)\rangle, \\
-    &G_{S,0}^<(t'-t) \equiv \frac{i}{\hbar}\langle\hat{d}_{0}^\dagger(t)\hat{d}_{0}(t')\rangle.
+    &G_{k,0}^<(t-t') \equiv i\langle\hat{c}_{k,0}^\dagger(t')\hat{c}_{k,0}(t)\rangle, \\
+    &G_{S,0}^<(t'-t) \equiv i\langle\hat{d}_{0}^\dagger(t)\hat{d}_{0}(t')\rangle.
 \end{eqnarray}
 So that
 \begin{align}
-     \langle\hat{d}^\dagger\hat{c}_k\rangle &= -i\hbar T\int dt \, \left[G_{S,0}^{(-)}(t'-t)G_{k,0}^<(t-t')
+     \langle\hat{d}^\dagger\hat{c}_k\rangle &= \frac{-iT}{\hbar}\int dt \, \left[G_{S,0}^{(-)}(t'-t)G_{k,0}^<(t-t')
     +G_{k,0}^{(+)}(t-t')G_{S,0}^<(t'-t)\right] + O(T^2), \nonumber\\
-    &= -i\hbar T \int d\tau\, \left[G_{S,0}^{(-)}(-\tau)G_{k,0}^<(\tau) + G_{k,0}^{(+)}(\tau)G_{S,0}^<(-\tau)\right] + O(T^2).
+    &= \frac{-iT}{\hbar} \int d\tau\, \left[G_{S,0}^{(-)}(-\tau)G_{k,0}^<(\tau) + G_{k,0}^{(+)}(\tau)G_{S,0}^<(-\tau)\right] + O(T^2).
 \end{align}
 Here we swapped variables to $\tau \equiv t-t'$. These expressions have the form of a convolution product. We may change to Fourier space using the transforms given by
 \begin{equation}
-    G^{(+)}_0(\tau) = (G^{(-)}_0(-\tau))^* = \int \frac{dE}{2\pi\hbar} G^{(+)}_0(E)\,e^{-\frac{i\tau E}{\hbar}},
+    G^{(+)}_0(\tau) = (G^{(-)}_0(-\tau))^* = \int \frac{d\omega}{2\pi} G^{(+)}_0(\omega)\,e^{-i\omega\tau},
 \end{equation}
 \begin{equation}
-    G^<_0(\tau) = \int \frac{dE}{2\pi\hbar}G^<_0(E)\,e^{-\frac{i\tau E}{\hbar}},
+    G^<_0(\tau) = \int \frac{d\omega}{2\pi}G^<_0(\omega)\,e^{-i\omega\tau},
 \end{equation}
 and thus
 \begin{equation}
-     \langle\hat{d}^\dagger\hat{c}_k\rangle = -i\hbar T\int\frac{dE}{2\pi\hbar}\left[G^{(-)}_{S,0}(E)G_{k,0}^<(E) + G_{k,0}^{(+)}(E)G_{S,0}^<(E)\right] + O(T^2).
+     \langle\hat{d}^\dagger\hat{c}_k\rangle = \frac{-iT}{\hbar}\int\frac{d\omega}{2\pi}\left[G^{(-)}_{S,0}(\omega)G_{k,0}^<(\omega) + G_{k,0}^{(+)}(\omega)G_{S,0}^<(\omega)\right] + O(T^2).
 \end{equation}
-To proceed we introduce the spectral weight $A(E)$ defined as
+To proceed we introduce the spectral weight $A(\omega)$ defined as
 \begin{equation}
-    A(E) \equiv i\hbar\left[G^{(+)}(E)-G^{(-)}(E)\right] = -2\hbar \mathfrak{Im} \{G^{(+)}(E)\} = 2\hbar\mathfrak{Im}\{G^{(-)}(E)\},
+    A(\omega) \equiv i\left[G^{(+)}(\omega)-G^{(-)}(\omega)\right] = \mp2 \mathfrak{Im} \{G^{(\pm)}(\omega)\},
 \end{equation}
 which is decidedly real. By formally introducing a sum over all eigenstates within the expectation values, the following important result may be derived:
 \begin{equation}
-    G^<(E) = \frac{i}{\hbar}N(E)A(E),
+    G^<(\omega) = iN(\omega)A(\omega),
 \end{equation}
-where $N(E)$ is the distribution function, which for the free case is the Fermi-Dirac distribution. This result is referred to as the \textit{fluctuation-dissipation} theorem, as it relates information about fluctuations (stored in $G^<(E)$) to information about dissipation (which is what $A(E)$ describes). Using this result we find
+where $N(\omega)$ is the distribution function, which for the free case is the Fermi-Dirac distribution. This result is referred to as the \textit{fluctuation-dissipation} theorem, as it relates information about fluctuations (stored in $G^<(\omega)$) to information about dissipation (which is what $A(\omega)$ describes). Using this result we find
 \begin{equation}
-     \langle\hat{d}^\dagger\hat{c}_k\rangle = T\int\frac{dE}{2\pi\hbar}\left[G^{(-)}_{S,0}(E)N_N(E)A_{k,0}(E) + G_{k,0}^{(+)}(E)N_S(E)A_{S,0}(E)\right] + O(T^2),
+     \langle\hat{d}^\dagger\hat{c}_k\rangle = \frac{T}{\hbar}\int\frac{d\omega}{2\pi}\left[G^{(-)}_{S,0}(\omega)N_N(\omega)A_{k,0}(\omega) + G_{k,0}^{(+)}(\omega)N_S(\omega)A_{S,0}(\omega)\right] + O(T^2),
 \end{equation}
 where the subscript $_N$ refers to "normal metal". We thus find that for the expectation value of the current 
 \begin{align}
     \langle\hat{I}\rangle &= T \frac{2e}{\hbar}\sum_k\mathfrak{Im} \{\langle \hat{d}^\dagger\hat{c_k} \rangle \}, \nonumber\\
-    &= |T|^2\frac{2e}{\hbar} \sum_k \int \frac{dE}{2\pi\hbar}\left[N_N(E)A_{k,0}(E) \mathfrak{Im}\{G_{S,0}^{(-)}(E)\} + N_S(E)A_{S,0}(E)\mathfrak{Im} \{G_{k,0}^{(+)}(E)\}\right] + O(T^3),\nonumber \\
-    &= \frac{e|T|^2}{\hbar^2}\sum_k \int \frac{dE}{2\pi\hbar} A_{S,0}(E)A_{k,0}(E)\left[N_N(E)-N_S(E)\right] + O(T^3).
+    &= |T|^2\frac{2e}{\hbar^2} \sum_k \int \frac{d\omega}{2\pi}\left[N_N(\omega)A_{k,0}(\omega) \mathfrak{Im}\{G_{S,0}^{(-)}(\omega)\} + N_S(\omega)A_{S,0}(\omega)\mathfrak{Im} \{G_{k,0}^{(+)}(\omega)\}\right] + O(T^3),\nonumber \\
+    &= \frac{e|T|^2}{\hbar^2}\sum_k \int \frac{d\omega}{2\pi} A_{S,0}(\omega)A_{k,0}(\omega)\left[N_N(\omega)-N_S(\omega)\right] + O(T^3).
 \end{align}
 Now for the free case we may explicitly fill in the expression for the Green's function, giving
 \begin{equation}
-    A_{k,0}(E) = i\hbar\left[\frac{1}{E-\xi_k+i\eta} - \frac{1}{E-\xi_k-i\eta}\right] = 2\pi\hbar \delta(E-\xi_k),
+    A_{k,0}(E) = i\left[\frac{\hbar}{\hbar\omega-\xi_k+i\eta} - \frac{\hbar}{\hbar\omega-\xi_k-i\eta}\right] = 2\pi\hbar \delta(\hbar\omega-\xi_k),
 \end{equation}
 which follows from the Sokhotski-Plemelj theorem. If we treat both the sample and the tip as a free electron gas, we find
 \begin{equation}
-    \langle\hat{I}\rangle =  \frac{2\pi e}{\hbar}|T|^2 \sum_k \int dE \, \delta(E-\xi_S)\delta(E-\xi_k)\left[N_N(E)-N_S(E)\right] + O(T^3),
+    \langle\hat{I}\rangle =  \frac{2\pi e}{\hbar}|T|^2 \sum_k \int d(\hbar\omega) \, \delta(\hbar\omega-\xi_S)\delta(\hbar\omega-\xi_k)\left[N_N(\omega)-N_S(\omega)\right] + O(T^3),
 \end{equation}
-and using that in our simplified model we have the density of states given by $\rho_S(E) = \delta(E-\xi_S)$ and $\rho_N(E) = \sum_k\delta(E-\xi_k)$, we find the final expression
+and using that in our simplified model we have the density of states given by $\rho_S(\omega) = \delta(\hbar\omega-\xi_S)$ and $\rho_N(\omega) = \sum_k\delta(\hbar\omega-\xi_k)$, we find the final expression
 \begin{equation}\label{eq:current}
-    \langle\hat{I}\rangle = \frac{2\pi e}{\hbar}|T|^2 \int dE\, \rho_S(E)\rho_N(E)\left[N_N(E)-N_S(E)\right] + O(T^3).
+    \langle\hat{I}\rangle = \frac{2\pi e}{\hbar}|T|^2 \int d(\hbar\omega)\, \rho_S(\omega)\rho_N(\omega)\left[N_N(\omega)-N_S(\omega)\right] + O(T^3).
 \end{equation}
-Note that $N_N(E)-N_S(E) = N_N(E)(1-N_S(E)) - N_S(E)(1-N_N(E))$, showing the forward and backward current separately.
+Note that $N_N(\omega)-N_S(\omega) = N_N(\omega)(1-N_S(\omega)) - N_S(\omega)(1-N_N(\omega))$, showing the forward and backward current separately.
 
 
 
@@ -116,25 +116,25 @@ Because the prefactor is $|T|^2$, we only need to retain zeroth order terms in t
 \end{equation}
 The term $\langle \hat{I}(t)\rangle \langle \hat{I}(t') \rangle$ is zero at this order, because it only contains crossterm expectation values, e.g. $\langle \hat{d}^\dagger(t)\hat{c}_k(t)\rangle = O(T)$. Thus the above expression corresponds to the noise $S(t-t')$ at this order. To proceed we introduce the counterpart to the lesser Green's function, the \textit{greater} Green's function:
 \begin{align}
-    G_{k,0}^>(t-t') = -\frac{i}{\hbar}\langle \hat{c}_{k,0}(t)\hat{c}_{k,0}^\dagger(t') \rangle, \\
-    G_{S,0}^>(t-t') = -\frac{i}{\hbar}\langle \hat{d}_0(t)\hat{d}_0^\dagger(t') \rangle.
+    G_{k,0}^>(t-t') = -i\langle \hat{c}_{k,0}(t)\hat{c}_{k,0}^\dagger(t') \rangle, \\
+    G_{S,0}^>(t-t') = -i\langle \hat{d}_0(t)\hat{d}_0^\dagger(t') \rangle.
 \end{align}
 Similarly to the lesser Green's function, $G^>(E)$ is also related to the spectral weight trough the fluctuation-dissipation theorem, according to the equation
 \begin{equation}
-    G^>(E) = -\frac{i}{\hbar}[1-N(E)]A(E).
+    G^>(E) = -i[1-N(E)]A(E).
 \end{equation}
 We find for the noise (again with $\tau \equiv t-t'$)
 \begin{align}\label{eq:autocorrelation}
-    S(t-t') &= e^2|T|^2 \sum_k \left[G^>_{k,0}(t-t')G^<_{S,0}(t'-t) + G^<_{k,0}(t'-t)G^>_{S,0}(t-t')\right] + O(T^3),\\
-    &= e^2|T|^2 \sum_k \left[G^>_{k,0}(\tau)G^<_{S,0}(-\tau) + G^<_{k,0}(-\tau)G^>_{S,0}(\tau)\right] + O(T^3).
+    S(t-t') &= \frac{e^2|T|^2}{\hbar^2} \sum_k \left[G^>_{k,0}(t-t')G^<_{S,0}(t'-t) + G^<_{k,0}(t'-t)G^>_{S,0}(t-t')\right] + O(T^3),\\
+    &= \frac{e^2|T|^2}{\hbar^2} \sum_k \left[G^>_{k,0}(\tau)G^<_{S,0}(-\tau) + G^<_{k,0}(-\tau)G^>_{S,0}(\tau)\right] + O(T^3).
 \end{align}
 The noise that we're interested in is the shot noise, which is frequency independent, hence we look at the time averaged noise, the $\omega = 0$ component. Denoting $\tilde{S}(E)$ the \textit{one-sided} (by time reversal symmetry this just yields a factor of two) power spectrum of the noise, we find
 \begin{equation}
-    \tilde{S}(0) = 2e^2|T|^2 \sum_k \int d\tau \,\left[G^>_{k,0}(\tau)G^<_{S,0}(-\tau) + G^<_{k,0}(-\tau)G^>_{S,0}(\tau)\right] + O(T^3),
+    \tilde{S}(0) = \frac{2e^2|T|^2}{\hbar^2} \sum_k \int d\tau \,\left[G^>_{k,0}(\tau)G^<_{S,0}(-\tau) + G^<_{k,0}(-\tau)G^>_{S,0}(\tau)\right] + O(T^3),
 \end{equation}
 we once again recover the form of a convolution. Fourier transforming the Green's functions yields
 \begin{align}
-    \tilde{S}(0) &= 2e^2|T|^2 \sum_k \int \frac{dE}{2\pi\hbar} \left[G^>_{k,0}(E)G^<_{S,0}(E) + G^<_{k,0}(E)G^>_{S,0}(E)\right] + O(T^3),\\
+    \tilde{S}(0) &= \frac{2e^2|T|^2}{\hbar^2} \sum_k \int \frac{dE}{2\pi\hbar} \left[G^>_{k,0}(E)G^<_{S,0}(E) + G^<_{k,0}(E)G^>_{S,0}(E)\right] + O(T^3),\\
     &= \frac{2e^2}{\hbar^2}|T|^2 \sum_k \int \frac{dE}{2\pi\hbar} A_{S,0}(E)A_{k,0}(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right] + O(T^3), \\
     &= \frac{4\pi e^2}{\hbar}|T|^2\int dE\,\rho_S(E)\rho_N(E)\left[\bigl(1-N_N(E)\bigr)N_S(E)+N_N(E)\bigl(1-N_S(E)\bigr)\right] + O(T^3).
 \end{align}

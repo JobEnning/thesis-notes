@@ -1,6 +1,6 @@
 \section{Week 2 - 21/9}
 \subsection{Non-zero energy power spectrum}
-We can explicitly Fourier transform \autoref{eq:autocorrelation} for non-zero energies. This gives the one-sided power spectrum \textcolor{red}{This is wrong, we should symmetrize here, see week 3.}
+We can explicitly Fourier transform \autoref{eq:autocorrelation} for non-zero energies. This gives the one-sided power spectrum \textcolor{red}{This is wrong, we should symmetrize here, see week 3. Also different Green's function convention}
 \begin{equation}
     \tilde{S}(E) = 2e^2|T|^2 \sum_k \int d\tau \,\left[G^>_{k,0}(\tau)G^<_{S,0}(-\tau) + G^<_{k,0}(-\tau)G^>_{S,0}(\tau)\right]e^{\frac{i\tau E}{\hbar}} + O(T^3).
 \end{equation}
@@ -26,6 +26,7 @@ The factor $1/2$ is because we're using a one-lead model. Assuming both $E$ and 
     }2e^2\Gamma_T\left[\theta\left(E-\frac{eV}{2}\right)\int_{\frac{eV}{2}}^{E}dE'\,\rho_S(E'-E) + \int_{-E}^{\frac{eV}{2}}dE'\rho_S(E'+E)\right], \\
     = 2e^2\Gamma_T\left[\theta\left(E-\frac{eV}{2}\right)\int_{-(E-\frac{eV}{2})}^0dE'\,\rho_S(E') + \int_{0}^{\frac{eV}{2}+E}dE'\rho_S(E')\right].
 \end{align}
+\textcolor{red}{THIS EXPRESSION IS WRONG, SYMMETRIZE FIRST}
 Using the BCS theory of superconductivity we can find an expression for $\rho_S(E)$, which we can plug in. However, let's first try it with the Lorentzian. Importantly, the above analysis forgets to first symmetrize the noise, which is what should really be done for the one-sided spectrum. For the zero energy spectrum this doesn't matter, but for non-zero energy we should explicitly symmetrize the noise before Fourier transforming
 
 

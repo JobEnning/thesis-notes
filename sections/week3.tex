@@ -1,4 +1,4 @@
-\section{Week 3 - 28/9}
+\section{Week 3 - 28/9 \textcolor{red}{Not yet adjusted convention}}
 \subsection{Resummation for current expression}
 Firstly, we'd like to find a general expression for the current in the model, without approximating the noise. For this we solve the self consistent set of equations given by \autoref{eq:c-evolution} and \autoref{eq:d-evolution}. Transforming to Fourier space we find
 \begin{eqnarray}\label{eq:c-fourier}
@@ -11,7 +11,7 @@ Focussing on the equation for $\hat{d}(E)$, we substitute \ref{eq:c-fourier}, gi
 \end{equation}
 which is solved by
 \begin{equation}
-    \hat{d}(E) = \frac{\hat{d}_0(E) + T G_{S,0}^{(+)}(E)\sum_k \hat{c}_{k,0}(E)}{1- T^2 G_{S,0}^{(+)}(E)\sum_k G_{k,0}^{(+)}(E)} = \left(1+\hbar\Sigma_S^{(+)}(E)\right)\hat{d}_0(E)+TG_{S}^{(+)}(E)\sum_k\hat{c}_{k,0}(E),
+    \hat{d}(E) = \frac{\hat{d}_0(E) + T G_{S,0}^{(+)}(E)\sum_k \hat{c}_{k,0}(E)}{1- T^2 G_{S,0}^{(+)}(E)\sum_k G_{k,0}^{(+)}(E)} = \left(1+\hbar\Sigma_S^{(+)}(E)G_S^{(+)}(E)\right)\hat{d}_0(E)+TG_{S}^{(+)}(E)\sum_k\hat{c}_{k,0}(E),
 \end{equation}
 where $G_S^{(+)}(E) = ((G_{S,0}^{(+)})^{-1} - T^2\sum_kG_{k,0}^{(+)}(E))^{-1}$ is the total retarded Green's function in the sample, and the retarded self-energy of the sample is given by $\hbar\Sigma^{(+)}_S(E) = T^2\sum_k G_{k,0}^{(+)}(E)$. Similarly, for $\hat{c}_k(E)$ we can substitute \autoref{eq:d-fourier} in \autoref{eq:c-fourier}, so that
 \begin{equation}

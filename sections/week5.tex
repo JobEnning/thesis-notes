@@ -1,0 +1,104 @@
+\section{Week 5 - 12/10}
+\subsection{Green's function resummation}
+\newcommand{\ta}{T}
+From the Heisenberg EOM it can be readily derived that
+\begin{equation}
+    \langle\hat{I(t)}\rangle = \frac{2eT}{\hbar} \mathfrak{Im}\left\{\sum_k\langle \hat{d}^\dagger(t) \hat{c}_k(t)\rangle\right\},
+\end{equation}
+If we expand the creation and annihilation operators in Fourier modes, we get
+\begin{equation}\label{eq:timeexp}
+    \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle = \sum_k\int\int\frac{d\omega}{2\pi}\frac{d\omega'}{2\pi}e^{-i(\omega'-\omega)t}\langle\hat{d}^\dagger(\omega)\hat{c}_k(\omega')\rangle.
+\end{equation}
+For the dynamics of the individual operators $\hat{d}$ and $\hat{c}_k$ we solve their respective EOMs, which yield the Fourier space equations
+\begin{gather}
+    \hat{d}(\omega) = \hat{d}_0(\omega) + \frac{\ta}{\hbar} G^{s (+)}_0(\omega)\sum_k\hat{c}_k(\omega), \\
+    \hat{c}_k(\omega) = \hat{c}_{k,0}(\omega) + \frac{\ta}{\hbar} G^{t (+)}_{k,0}(\omega)\hat{d}(\omega),
+\end{gather}
+where $\hat{d}_0$ and $\hat{c}_{k,0}$ are the solutions to the homogeneous EOMs, and $G^{s (+)}_0(\omega)$ and $G^{t (+)}_{k,0}(\omega)$ are the free retarded Green's functions in the sample and the tip respectively. These equations can be solved self-consistently, yielding
+\begin{gather}
+    \hat{d}(\omega) = G^{s(+)}(\omega)\left(G^{s(+)}_0(\omega)\right)^{-1}\hat{d}_0(\omega) + \frac{\ta}{\hbar} G^{s(+)}(\omega)\sum_k\hat{c}_{k,0}(\omega),\\
+    \sum_k\hat{c}_k(\omega) = G^{s(+)}(\omega)\left(G^{s(+)}_0(\omega)\right)^{-1}\sum_k\hat{c}_{k,0}(\omega) + \frac{\ta}{\hbar} \sum_kG^{t(+)}_{k,0}(\omega) G^{s(+)}(\omega)\left(G^{s(+)}_0(\omega)\right)^{-1}\hat{d}_0(\omega).
+\end{gather}
+Where $G^{s(+)}(\omega)$ is the total Green's function in the sample, given by
+\begin{equation}
+    G^{s(+)}(\omega) = \frac{G^{s(+)}_0(\omega)}{1 - G^{s(+)}_0(\omega)\underbrace{\frac{\ta^2}{\hbar^2}\sum_kG^{t(+)}_{k,0}(\omega)}_{=\Sigma^{s(+)}(\omega)}},
+\end{equation}
+where we've also defined the sample self-energy $\Sigma^{s(+)}(\omega)$. Looking at the self-consistent equations we recognize that we can simplify the equation, as $\hat{d}_0(\omega)$ solves the homogeneous EOM, which is given by $(G^{s(+)}_0(\omega))^{-1}\hat{d}_0(\omega) = 0$. These terms vanish by definition, leaving us with
+\begin{gather}
+    \hat{d}(\omega) = \frac{\ta}{\hbar} G^{s(+)}(\omega)\sum_k\hat{c}_{k,0}(\omega),\\
+    \sum_k\hat{c}_k(\omega) = G^{s(+)}(\omega)\left(G^{s(+)}_0(\omega)\right)^{-1}\sum_k\hat{c}_{k,0}(\omega).
+\end{gather}
+Substituting in \autoref{eq:timeexp} we find
+\begin{equation}
+    \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle = \sum_{k,k'}\int\int\frac{d\omega}{2\pi}\frac{d\omega'}{2\pi}e^{-i(\omega'-\omega)t} \frac{\ta}{\hbar} G^{s(-)}(\omega)G^{s(+)}(\omega')\left(G^{s(+)}_0(\omega')\right)^{-1}\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k',0}(\omega')\rangle,
+\end{equation}
+where $G^{s(-)}(\omega) = \left(G^{s(+)}(\omega)\right)^*$ is the advanced Green's function in the sample. The homogeneous solution $\hat{c}_{k,0}$ has a simple Fourier decomposition due to its free time evolution:
+\begin{equation}
+    \hat{c}_{k,0}(t) = \hat{c}_k(t=0)e^{-i\omega_k t} \implies \hat{c}_{k,0}(\omega) = 2\pi\delta(\omega-\omega_k)\hat{c}_k(t=0),
+\end{equation}
+with $\hbar\omega_k$ the energy of mode $k$. Carrying out the integrals we readily find
+\begin{equation}
+    \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle = \sum_{k,k'}e^{-i(\omega_{k'}-\omega_k)t} \frac{\ta}{\hbar} G^{s(-)}(\omega_k)G^{s(+)}(\omega_{k'})\left(G^{s(+)}_0(\omega_{k'})\right)^{-1}\langle\hat{c}^\dagger_{k,0}(t=0)\hat{c}_{k',0}(t=0)\rangle.
+\end{equation}
+The expectation value is certainly zero for $k\neq k'$, so that $\langle\hat{c}^\dagger_{k,0}(t=0)\hat{c}_{k',0}(t=0)\rangle = \delta_{kk'}\langle\hat{c}^\dagger_{k,0}(t=0)\hat{c}_{k,0}(t=0)\rangle$. This yields
+\begin{equation}
+    \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle = \sum_k\frac{\ta}{\hbar} G^{s(-)}(\omega_k)G^{s(+)}(\omega_{k})\left(G^{s(+)}_0(\omega_{k})\right)^{-1}\langle\hat{c}^\dagger_{k,0}(t=0)\hat{c}_{k,0}(t=0)\rangle.
+\end{equation}
+Now $G^{s(-)}(\omega_k)G^{s(+)}(\omega_{k}) = |G^{s(-)}(\omega_k)|^2 \in \mathbb{R}$, and also $\langle\hat{c}^\dagger_{k,0}(t=0)\hat{c}_{k,0}(t=0)\rangle \in \mathbb{R}$. The inverse free Green's function has an infinitesimal imaginary part, i.e. $\hbar\left(G^{s(+)}_0(\omega_{k})\right)^{-1} = \hbar\omega_k - \xi_s + i\eta$. However, after this is taken to zero the resulting expression has no imaginary part, and therefore the current $\langle \hat{I} \rangle \propto \mathfrak{Im}\left\{\sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle\right\}$ vanishes.
+
+\textbf{Different approach} Using the identity 
+\begin{equation}
+    G^{s(+)}(\omega)\left(G^{s(+)}_0(\omega)\right)^{-1} = 1+\Sigma^{s(+)}(\omega)G^{s(+)}(\omega), 
+\end{equation}
+we can also write
+\begin{align}
+    \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle &= \sum_{k,k'}\int\int\frac{d\omega}{2\pi}\frac{d\omega'}{2\pi}e^{-i(\omega'-\omega)t} \frac{\ta}{\hbar} G^{s(-)}(\omega)\left(1 +  \Sigma^{s(+)}(\omega')G^{s(+)}(\omega')\right)\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k',0}(\omega')\rangle,\nonumber\\
+    &= -i\sum_k\int\frac{d\omega}{2\pi}\frac{\ta}{\hbar} G^{s(-)}(\omega)\left(1+\Sigma^{s(+)}(\omega)G^{s(+)}(\omega)\right)G^{t<}_{k,0}(\omega),
+\end{align}
+where we introduce the free lesser Green's function $\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k',0}(\omega')\rangle = -2\pi i \delta_{kk'} \delta(\omega-\omega')G^{t<}_{k,0}(\omega)$, which is related to observables through the fluctuation dissipation theorem, which states
+\begin{equation}
+    -i G^<(\omega) = N(\omega)A(\omega); \qquad A(\omega)\equiv\mp2\mathfrak{Im}\left\{G^{(\pm)}(\omega)\right\}=2\pi\hbar\rho(\omega),
+\end{equation}
+where $N(\omega)$ is the Fermi-Dirac distribution, $A(\omega)$ is the spectral weight, and $\rho(\omega)$ is the density of states. For the free case $A_{k,0}(\omega) = 2\pi\hbar\delta(E-\hbar\omega_k)$, and with $\sum_k\delta(E-\hbar\omega_k) = \rho_{t,0}(\omega)$ we readily find
+\begin{equation}
+     \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle = \int d(\hbar\omega) \frac{\ta}{\hbar} G^{s(-)}(\omega)\left(1 + \Sigma^{s(+)}(\omega)G^{s(+)}(\omega)\right)N_t(\omega)\rho_{t,0}(\omega).
+\end{equation}
+Taking the imaginary part we find the current
+\begin{align}
+    \langle\hat{I}\rangle &= \frac{2e\ta^2}{\hbar}\int d(\hbar\omega)N_t(\omega)\rho_{t,0}(\omega)\left[\mathfrak{Im}\left\{G^{s(-)}(\omega)\right\} + \overbrace{G^{s(-)}(\omega) G^{s(+)}(\omega)}^{=|G^{s(-)}(\omega)|^2\in \mathbb{R}}\mathfrak{Im}\left\{\Sigma^{s(+)}(\omega)\right\}\right],\nonumber \\
+    &= \frac{2 eT^2}{\hbar}\int d(\hbar\omega)N_t(\omega)\rho_{t,0}(\omega)\left[\pi\rho_s(\omega) + G^{s(-)}(\omega) G^{s(+)}(\omega)\sum_k\ta^2\mathfrak{Im}\left\{G^{t(+)}_{k,0}(\omega)\right\}\right],\nonumber\\
+    &= \frac{2\pi eT^2}{\hbar}\int d(\hbar\omega)N_t(\omega)\rho_{t,0}(\omega)\left[\rho_s(\omega) - \ta^2 G^{s(-)}(\omega) G^{s(+)}(\omega)\rho_{t,0}(\omega)\right].
+\end{align}
+
+\textbf{Correct approach} Again using the identity 
+\begin{equation}
+    G^{s(+)}(\omega)\left(G^{s(+)}_0(\omega)\right)^{-1} = 1+\Sigma^{s(+)}(\omega)G^{s(+)}(\omega), 
+\end{equation}
+we find the self-consistent equation for $\hat{c}_k(\omega)$ reads
+\begin{align}
+    \sum_k\hat{c}_k(\omega) &= \sum_k \hat{c}_{k,0}(\omega) + \Sigma^{s(+)}(\omega)G^{s(+)}(\omega)\sum_k\hat{c}_{k,0},\nonumber\\
+    &=\sum_k \hat{c}_{k,0}(\omega)+\frac{\hbar}{\ta}\Sigma^{s(+)}(\omega)\hat{d}(\omega),
+\end{align}
+where we recognized the self-consistent solution for $\hat{d}(\omega) = \frac{\ta}{\hbar}G^{s(+)}(\omega)\sum_k\hat{c}_{k,0}(\omega)$. This gives
+\begin{align}
+    \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle &= \sum_{k,k'}\int\int\frac{d\omega}{2\pi}\frac{d\omega'}{2\pi}e^{-i(\omega'-\omega)t} \left[\frac{\ta}{\hbar}G^{s(-)}(\omega)\sum_{k,k'}\langle \hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k',0}(\omega')\rangle+\frac{\hbar}{\ta}\overbrace{\Sigma^{s(+)}(\omega')}^{=\frac{\ta^2}{\hbar^2}\sum_kG^{t(+)}_{k,0}}\langle \hat{d}^\dagger(\omega)\hat{d}(\omega')\rangle\right],\nonumber\\
+    &= \frac{-i\ta}{\hbar}\sum_k\int\frac{d\omega}{2\pi}\left[G^{s(-)}(\omega)G^{t<}_{k,0}(\omega)+G^{t(+)}_{k,0}G^{s<}(\omega)\right].
+\end{align}
+Where we used $\langle \hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k',0}(\omega')\rangle = -2\pi i \delta_{kk'}\delta(\omega-\omega')G^{t<}_{k,0}(\omega)$ and $\langle \hat{d}^\dagger(\omega)\hat{d}(\omega')\rangle = -2\pi i \delta(\omega-\omega') G^{s<}(\omega)$, and the explicit expression of the self-energy. This is the exact same expression for the first order in $T$ calculation, but with the free sample Green's functions replaced with total Green's functions. Using the fluctuation dissipation theorem we can relate the lesser Green's functions to the occupation numbers, giving
+\begin{equation}
+    \sum_k \langle{\hat{d}^\dagger(t)\hat{c}_k(t)}\rangle = \frac{\ta}{\hbar}\sum_k\int\frac{d\omega}{2\pi}\left[G^{s(-)}(\omega)N_{t,0}(\omega)A^t_{k,0}(\omega)+G^{t(+)}_{k,0}(\omega)N_s(\omega)A^s(\omega)\right].
+\end{equation}
+Now taking the imaginary part we find the current
+\begin{align}
+    \langle\hat{I}\rangle &= \frac{2 e T^2}{\hbar^2}\sum_k\int\frac{d\omega}{2\pi}\left[\mathfrak{Im}\left\{G^{s(-)}(\omega)\right\}N_{t,0}(\omega)A^t_{k,0}(\omega)+\mathfrak{Im}\left\{G^{t(+)}_{k,0}(\omega)\right\}N_s(\omega)A^s(\omega)\right],\nonumber\\
+    &= \frac{e\ta^2}{\hbar^2}\sum_k\int\frac{d\omega}{2\pi}A^s(\omega)A^t_{k,0}(\omega)\left[N_{t,0}(\omega)-N_s(\omega)\right],\nonumber\\
+    &= \frac{2\pi e \ta^2}{\hbar}\int d(\hbar\omega)\rho_{t,0}(\omega)\rho_s(\omega)[N_{t,0}(\omega)-N_s(\omega)],
+\end{align}
+which is also the same result as the second order calculation when replacing the free sample density and occupation number with their quantum corrected values.
+
+With the expression for $\hat{d}(\omega)$ we find
+\begin{align}
+    \langle \hat{d}^\dagger(\omega) \hat{d}(\omega')\rangle &= G^{s(-)}(\omega)\frac{\ta^2}{\hbar^2}\sum_k \langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega)\rangle G^{s(+)}(\omega),\nonumber\\
+    &=G^{s(-)}(\omega)\Sigma^{s<}(\omega)G^{s(+)}(\omega),
+\end{align}
+where we've defined the lesser (or Keldysh) self-energy $\Sigma^{s<}(\omega) = \frac{\ta^2}{\hbar^2}\sum_k\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega)\rangle$. This equation is known as the Keldysh equation, and is a familiar result from non-equilibrium quantum field theory. It turns out, that in the above case, the fully corrected occupation numbers are actually exactly equivalent to the occupation numbers of the tip, that is, the above derivation actually contains the equilibration process. This means that for our simple system we indeed find a zero current.
