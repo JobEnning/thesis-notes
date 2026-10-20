@@ -91,14 +91,18 @@ Where we used $\langle \hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k',0}(\omega')\rang
 Now taking the imaginary part we find the current
 \begin{align}
     \langle\hat{I}\rangle &= \frac{2 e T^2}{\hbar^2}\sum_k\int\frac{d\omega}{2\pi}\left[\mathfrak{Im}\left\{G^{s(-)}(\omega)\right\}N_{t,0}(\omega)A^t_{k,0}(\omega)+\mathfrak{Im}\left\{G^{t(+)}_{k,0}(\omega)\right\}N_s(\omega)A^s(\omega)\right],\nonumber\\
-    &= \frac{e\ta^2}{\hbar^2}\sum_k\int\frac{d\omega}{2\pi}A^s(\omega)A^t_{k,0}(\omega)\left[N_{t,0}(\omega)-N_s(\omega)\right],\nonumber\\
-    &= \frac{2\pi e \ta^2}{\hbar}\int d(\hbar\omega)\rho_{t,0}(\omega)\rho_s(\omega)[N_{t,0}(\omega)-N_s(\omega)],
+    &= \frac{e\ta^2}{\hbar^2}\sum_k\int\frac{d\omega}{2\pi}A^s(\omega)A^t_{k,0}(\omega)\left[N_{t,0}(\omega)-N_s(\omega)\right]\nonumber,
 \end{align}
-which is also the same result as the second order calculation when replacing the free sample density and occupation number with their quantum corrected values.
+\begin{tcolorbox}[colback=gray!20!white]
+\begin{equation}
+    \langle\hat{I}\rangle= \frac{2\pi e \ta^2}{\hbar}\int d(\hbar\omega)\rho_{t,0}(\omega)\rho_s(\omega)[N_{t,0}(\omega)-N_s(\omega)]
+\end{equation}
+\end{tcolorbox}
+which is also the same result as the second order calculation (\autoref{eq:current}) when replacing the free sample density and occupation number with their quantum corrected values.
 
 With the expression for $\hat{d}(\omega)$ we find
 \begin{align}
     \langle \hat{d}^\dagger(\omega) \hat{d}(\omega')\rangle &= G^{s(-)}(\omega)\frac{\ta^2}{\hbar^2}\sum_k \langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega')\rangle G^{s(+)}(\omega'),\nonumber\\
     &=2\pi \delta(\omega-\omega')G^{s(-)}(\omega)\Sigma^{s<}(\omega)G^{s(+)}(\omega'),
 \end{align}
-where we've defined the lesser (or Keldysh) self-energy $2\pi\delta(\omega-\omega')\Sigma^{s<}(\omega) = \frac{\ta^2}{\hbar^2}\sum_k\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega')\rangle$. This equation is known as the Keldysh equation, and is a familiar result from non-equilibrium quantum field theory. It turns out, that in the above case, the fully corrected occupation numbers are actually exactly equivalent to the occupation numbers of the tip, that is, the above derivation actually contains the equilibration process. This means that for our simple system we indeed find a zero current.
+where we've defined the lesser (or Keldysh) self-energy $2\pi\delta(\omega-\omega')\Sigma^{s<}(\omega) = \frac{\ta^2}{\hbar^2}\sum_k\langle\hat{c}^\dagger_{k,0}(\omega)\hat{c}_{k,0}(\omega')\rangle$. This equation is known as the Keldysh equation, and is a familiar result from non-equilibrium quantum field theory. It turns out that in the above case the fully corrected occupation numbers are equal to the occupation numbers of the tip. That is, the above derivation actually contains the equilibration process, and we find a zero current.

@@ -81,9 +81,11 @@ which follows from the Sokhotski-Plemelj theorem. If we treat both the sample an
     \langle\hat{I}\rangle =  \frac{2\pi e}{\hbar}|T|^2 \sum_k \int d(\hbar\omega) \, \delta(\hbar\omega-\xi_S)\delta(\hbar\omega-\xi_k)\left[N_N(\omega)-N_S(\omega)\right] + O(T^3),
 \end{equation}
 and using that in our simplified model we have the density of states given by $\rho_S(\omega) = \delta(\hbar\omega-\xi_S)$ and $\rho_N(\omega) = \sum_k\delta(\hbar\omega-\xi_k)$, we find the final expression
+\begin{tcolorbox}[colback=gray!20!white]
 \begin{equation}\label{eq:current}
     \langle\hat{I}\rangle = \frac{2\pi e}{\hbar}|T|^2 \int d(\hbar\omega)\, \rho_S(\omega)\rho_N(\omega)\left[N_N(\omega)-N_S(\omega)\right] + O(T^3).
 \end{equation}
+\end{tcolorbox}
 Note that $N_N(\omega)-N_S(\omega) = N_N(\omega)(1-N_S(\omega)) - N_S(\omega)(1-N_N(\omega))$, showing the forward and backward current separately.
 
 
