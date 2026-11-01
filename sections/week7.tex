@@ -1,0 +1,81 @@
+\section{Week 7 - 26/10}
+\subsection{Resummation for the noise}
+The current autocorrelation function is given by
+\begin{equation}
+    S(t-t') = \langle \hat{I}(t)\hat{I}(t') \rangle - \langle\hat{I}(t)\rangle \langle\hat{I}(t')\rangle. 
+\end{equation}
+This can be expressed in terms of creation and annihilation operators
+\begin{align}
+    \langle\hat{I}(t)\hat{I}(t')\rangle = -\frac{e^2 T^2}{\hbar^2}\sum_{k,q} \left[
+    \langle\hat{d}^\dagger(t)\hat{c}_k(t)\hat{d}^\dagger(t')\hat{c}_q(t')\rangle - 
+    \langle\hat{d}^\dagger(t)\hat{c}_k(t)\hat{c}_q^\dagger(t')\hat{d}(t')\rangle \right.\nonumber\\
+    \left.- \langle\hat{c}_k^\dagger(t)\hat{d}(t)\hat{d}^\dagger(t')\hat{c}_q(t')\rangle +
+    \langle\hat{c}_k^\dagger(t)\hat{d}(t)\hat{c}_q^\dagger(t')\hat{d}(t')\rangle \right].
+\end{align}
+The Hamiltonian is quadratic, so we can Wick contract the higher order moments. The terms in which the operators are paired up at equal time are subtracted in the definition of the autocorrelation function, so that we find
+\begin{align}
+    S(t-t') = -\frac{e^2 T^2}{\hbar^2}\sum_{k,q} \left[
+    \langle\hat{d}^\dagger(t)\hat{c}_q(t')\rangle\langle\hat{c}_k(t)\hat{d}^\dagger(t')\rangle - 
+    \langle\hat{d}^\dagger(t)\hat{d}(t')\rangle\langle\hat{c}_k(t)\hat{c}_q^\dagger(t')\rangle \right.\nonumber\\
+    \left.- \langle\hat{c}_k^\dagger(t)\hat{c}_q(t')\rangle\langle\hat{d}(t)\hat{d}^\dagger(t')\rangle +
+    \langle\hat{c}_k^\dagger(t)\hat{d}(t')\rangle\langle\hat{d}(t)\hat{c}_q^\dagger(t')\rangle \right].
+\end{align}
+By the Wiener-Khinchin theorem the power spectral density $\tilde{S}(\omega)$ of a process is given by the Fourier transform of its symmetrized autocorrelation function
+\begin{equation}
+    \tilde{S}(\omega) = \int d(t-t')\,e^{i\omega(t-t')}\left(S(t-t')+S(t'-t)\right),
+\end{equation}
+which amounts to
+\begin{align}
+    \tilde{S}(\omega) = \frac{e^2T^2}{\hbar^2}\sum_{k,q}\sum_{m=\pm1}\int\frac{d\omega'}{2\pi}&\left[\langle\hat{d}^\dagger(\omega')\hat{d}(\omega')\rangle\langle\hat{c}_k(\omega'+m\omega)\hat{c}_q^\dagger(\omega'+m\omega)\rangle\right.\nonumber\\ 
+    &\left.+ \langle\hat{c}_k^\dagger(\omega')\hat{c}_q(\omega')\rangle\langle\hat{d}(\omega'+m\omega)\hat{d}^\dagger(\omega'+m\omega)\rangle\right.\nonumber\\ 
+    &\left.- \langle\hat{d}^\dagger(\omega')\hat{c}_k(\omega')\rangle\langle\hat{c}_q(\omega'+m\omega)\hat{d}^\dagger(\omega'+m\omega)\rangle\right.\nonumber\\
+    &\left.- \langle\hat{c}_k^\dagger(\omega')\hat{d}(\omega')\rangle\langle\hat{d}(\omega'+m\omega)\hat{c}_q^\dagger(\omega'+m\omega)\rangle\right].
+\end{align}
+The first two terms are diagonal and just give the total lesser and greater Green's functions. For the latter two crossterms we need the resummed solutions to the equations of motion
+\begin{gather}
+    \hat{d}(\omega) = \frac{T}{\hbar}G^{s(+)}(\omega)\sum_k\hat{c}_{k,0}(\omega),\\
+    \hat{c_k}(\omega) = \hat{c}_{k,0}(\omega) + \frac{T}{\hbar}G^{t(+)}_0\hat{d}(\omega),
+\end{gather}
+using which we can express the spectral density in terms of Green's functions
+\begin{align}
+    \tilde{S}(\omega) = \frac{e^2T^2}{\hbar^2}&\sum_{m=\pm1}\int\frac{d\omega'}{2\pi}\biggl[\sum_k \left\{G^{s<}(\omega')G^{t>}_k(\omega'+m\omega) + G^{t<}_k(\omega')G^{s>}(\omega'+m\omega)\right\}\nonumber\\
+    & -\frac{T^2}{\hbar^2}\sum_{k,q}\left\{\left(G^{s(-)}(\omega')G^{t<}_{k,0}(\omega')+G^{t(+)}_{k,0}(\omega')G^{s<}(\omega')\right)\right.\nonumber\\
+    &\left.\qquad\qquad\times\left(G^{s(-)}(\omega'+m\omega)G^{t>}_{q,0}(\omega'+m\omega)+G^{t(+)}_{q,0}(\omega'+m\omega)G^{s>}(\omega'+m\omega)\right)\nonumber\right.\\
+    &\left.\qquad\qquad+\left(G^{s(+)}(\omega')G^{t<}_{k,0}(\omega')+G^{t(-)}_{k,0}(\omega')G^{s<}(\omega')\right)\right.\nonumber\\
+    &\left.\qquad\qquad\times\left(G^{s(+)}(\omega'+m\omega)G^{t>}_{q,0}(\omega'+m\omega)+G^{t(-)}_{q,0}(\omega'+m\omega)G^{s>}(\omega'+m\omega)\right)\right\}\biggr].
+\end{align}
+Focussing on the crossterms, we note that the above expression can be written in terms of the real and imaginary parts of the retarded and advanced Green's functions. Generally, in the continuum limit, we can neglect their real part. \textcolor{red}{I don't know whether that's true.} This yields
+\begin{align}
+    \tilde{S}(\omega) = \frac{e^2T^2}{\hbar^2}&\sum_{m=\pm1}\int\frac{d\omega'}{2\pi}\biggl[\sum_k \left\{G^{s<}(\omega')G^{t>}_k(\omega'+m\omega) + G^{t<}_k(\omega')G^{s>}(\omega'+m\omega)\right\}\nonumber\\
+    & +\frac{2T^2}{\hbar^2}\sum_{k,q}\left\{\img{G^{s(+)}(\omega')}\img{G^{s(+)}(\omega'+m\omega)}G^{t<}_{k,0}(\omega')G^{t>}_{q,0}(\omega'+m\omega)\right.\nonumber\\
+    &\left.\qquad\qquad+\img{G^{s(-)}(\omega')}\img{G^{t(+)}_{k,0}(\omega'+m\omega)}G^{t<}_{q,0}(\omega')G^{s>}(\omega'+m\omega)\nonumber\right.\\
+    &\left.\qquad\qquad+\img{G^{t(+)}_{k,0}(\omega')}\img{G^{s(-)}(\omega'+m\omega)}G^{s<}(\omega')G^{t>}_{q,0}(\omega'+m\omega)\right.\nonumber\\
+    &\left.\qquad\qquad+\img{G^{t(+)}_{k,0}(\omega')}\img{G^{t(+)}_{q,0}(\omega'+m\omega)}G^{s<}(\omega')G^{s>}(\omega'+m\omega)\right\}\biggr].
+\end{align}
+Now we express this in terms of the density of states and occupation numbers using the identities
+\begin{equation}
+    \img{G^{(\pm)}(\omega)} = \mp\pi\hbar\rho(\omega);\quad G^{<}(\omega) = 2\pi i \hbar N(\omega)\rho(\omega);\quad G^{>}(\omega) = -2\pi i \hbar (1-N(\omega))\rho(\omega),
+\end{equation}
+where for the tip Green's functions this includes taking the momentum sum. The resulting expression is
+\begin{tcolorbox}[colback=gray!20!white]
+\begin{align}
+    \tilde{S}(\omega) = \frac{2\pi e^2 T^2}{\hbar}\sum_{m=\pm 1}\int &d(\hbar\omega')\biggl[\rho_s(\omega')\rho_t(\omega'+m\omega)N_s(\omega')(1-N_t(\omega'+m\omega))\nonumber\\
+    &\qquad+\rho_t(\omega')\rho_s(\omega'+m\omega)N_t(\omega')(1-N_s(\omega'+m\omega))\nonumber\\
+    &-2\pi^2T^2\rho_s(\omega')\rho_s(\omega'+m\omega)\rho_{t,0}(\omega')\rho_{t,0}(\omega'+m\omega)\nonumber\\
+    &\qquad\times\biggl(N_{t,0}(\omega')(1-N_s(\omega'+m\omega)) + N_s(\omega')(1-N_{t,0}(\omega'+m\omega))\nonumber\\
+    &\qquad-N_{t,0}(\omega')(1-N_{t,0}(\omega'+m\omega)) -N_s(\omega')(1-N_s(\omega'+m\omega))\biggr)\biggr].
+\end{align}
+\end{tcolorbox}
+Which is a general expression. Note that often the effect of the sample on the tip is negligible, so that $N_t\approx N_{t,0}$ and $\rho_t\approx\rho_{t,0}$. Now taking a constant density of states for both the sample and the tip we find that we can write this as
+\begin{align}
+    \tilde{S}(\omega) = \frac{2e^2}{h}D(1-D)\int d(\hbar\omega')\sum_{m=\pm1}\biggl(N_{t,0}(\omega')(1-N_s(\omega'+m\omega))+N_s(\omega')(1-N_{t,0}(\omega'+m\omega))\biggr)\nonumber\\
+    +\frac{2e^2}{h}D^2\int d(\hbar\omega')\sum_{m=\pm1}\biggl(N_{t,0}(\omega')(1-N_{t,0}(\omega'+m\omega))+N_s(\omega')(1-N_s(\omega'+m\omega))\biggr),
+\end{align}
+where $D = 2\pi^2T^2\rho_s(\omega_F)\rho_{t,0}(\omega_F)$. For two continuum metals the above integrals can be explicitly evaluated, giving 
+\begin{tcolorbox}[colback=gray!20!white]
+\begin{align}
+    \tilde{S}(\omega)& = \frac{2e^2}{h}D(1-D)\left[(eV+\hbar\omega)\coth\left(\frac{eV+\hbar\omega}{2k_\mathrm{B}T}\right)+(eV-\hbar\omega)\coth\left(\frac{eV-\hbar\omega}{2k_\mathrm{B}T}\right)\right]\nonumber\\
+    &+\frac{2e^2}{h}D^2\left[2\hbar\omega\coth\left(\frac{\hbar\omega}{2k_\mathrm{B}T}\right)\right].
+\end{align}
+\end{tcolorbox}
+This is the exact same expression used in the Schoelkopf paper. 
